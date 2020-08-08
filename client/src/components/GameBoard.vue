@@ -48,10 +48,14 @@ export default {
             return false;
         },
         symbolsSame() {
-            if (this.selectedSymbols[0] === selectedSymbols[1]) {
+            if (this.selectedSymbols[0] === this.selectedSymbols[1]) {
                 return true;
             }
             return false;
+        },
+        checkWin() {
+            this.twoSymbols();
+            this.symbolsSame();
         } 
     },
     components: {
