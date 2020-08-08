@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import CardService from '../services/CardService.js'
 import PlayerCard from './PlayerCard.vue'
 import OpponentCard from './OpponentCard.vue'
@@ -25,6 +24,7 @@ export default {
             cards: [],
             playerCard: null,
             opponentCard: null,
+            selectedSymbols: [],
         }
     },
     mounted() {
@@ -32,6 +32,10 @@ export default {
         .then(cards => this.cards = cards)
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
+
+            eventBus.$on('symbol-selected', (symbol) => {
+                this.selectedSymbols = symbol
+            });
 
     },
     methods: {
@@ -47,6 +51,10 @@ export default {
                 this.opponentCard = card;
             }
         }
+    },
+    components: {
+        "player-card": PlayerCard,
+        "opponent-card": OpponentCard,
     }
 }    
 </script>

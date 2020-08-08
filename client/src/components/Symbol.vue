@@ -1,5 +1,7 @@
 <template>
-  
+  <div>
+      <button v-on:click="handleClick" :symbol="symbol"></button>
+    </div>
 </template>
 
 <script>
@@ -9,7 +11,9 @@ export default {
     name: 'symbol',
     props: ['symbol'],
     methods: {
-        
+        handleClick: function() {
+            eventBus.$emit('symbol-selected',this.symbol)
+        }
     }
 
 }
