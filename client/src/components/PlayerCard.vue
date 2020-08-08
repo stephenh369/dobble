@@ -5,12 +5,12 @@
 </template>
 
 <script>
-    import Symbol from './Symbol.vue'
+    import CardSymbol from './Symbol.vue'
 export default {
     name: 'player-card',
     props: ['playerCard'],
     components: {
-      'card-symbol': Symbol
+      'card-symbol': CardSymbol
     }
 
 }
