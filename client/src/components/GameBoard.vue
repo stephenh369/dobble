@@ -1,6 +1,5 @@
 <template>
   <div>
-      
   </div>
 </template>
 
@@ -20,8 +19,8 @@ export default {
     mounted() {
         CardService.getCards()
         .then(cards => this.cards = cards)
-        .then(this.dealPlayerCard())
-        .then(this.dealOpponentCard())
+            .then(() => this.dealPlayerCard())
+            .then(() => this.dealOpponentCard());
 
     },
     methods: {
@@ -32,7 +31,7 @@ export default {
         dealOpponentCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
             if (JSON.stringify(card) === JSON.stringify(this.playerCard) ) {
-                dealOpponentCard();
+                this.dealOpponentCard();
             } else {
                 this.opponentCard = card;
             }
