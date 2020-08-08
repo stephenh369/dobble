@@ -1,5 +1,7 @@
 <template>
+  <ul>
   <symbol></symbol>
+  </ul>
 </template>
 
 <script>
