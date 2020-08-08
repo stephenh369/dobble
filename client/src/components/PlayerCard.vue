@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="playerCard">
     <card-symbol v-for="(symbol, index) of playerCard.symbols" :cardSymbol="symbol" :key="index" />
   </div>
 </template>
