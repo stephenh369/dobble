@@ -8,7 +8,7 @@
 import { eventBus } from '@/main.js';
 
 export default {
-    name: 'symbol',
+    name: 'CardSymbol',
     props: ['cardSymbol'],
     methods: {
         handleClick() {
