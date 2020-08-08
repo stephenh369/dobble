@@ -1,6 +1,6 @@
 <template>
   <div v-if="playerCard">
-    <card-symbol v-for="(symbol, index) of playerCard.symbols" :cardSymbol="symbol" :key="index" />
+    <card-symbol v-for="(oneSymbol, index) of playerCard.symbols" :cardSymbol="oneSymbol" :key="index" />
   </div>
 </template>
 

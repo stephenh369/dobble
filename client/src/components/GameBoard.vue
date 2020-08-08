@@ -29,12 +29,11 @@ export default {
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
 
-        eventBus.$on('symbol-selected', (symbol) => { 
-            this.selectedSymbols.push(symbol);
-            this.checkWin();
+        eventBus.$on('symbol-selected', (cardSymbol) => { 
+            this.selectedSymbols.push(cardSymbol);
             if (this.checkWin() === true) {
                 this.winRound();
-            } else {
+            } else if (this.twoSymbols() === true && this.symbolsSame() === false){
                 this.incorrectGuess();
             }
         });
@@ -67,8 +66,6 @@ export default {
             }
         },
         checkWin() {
-            this.twoSymbols();
-            this.symbolsSame();
             if (this.twoSymbols() === true && this.symbolsSame() === true) {
                 return true;
             } else {
