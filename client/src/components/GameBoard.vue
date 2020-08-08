@@ -31,8 +31,9 @@ export default {
             } else {
                 this.opponentCard = card;
             }
+        }
     }
-}
+}    
 </script>
 
 <style>
