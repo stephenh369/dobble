@@ -18,6 +18,7 @@ export default {
             cards: [],
             playerCard: null,
             opponentCard: null,
+            selectedSymbols: [],
         }
     },
     mounted() {
@@ -25,6 +26,10 @@ export default {
         .then(cards => this.cards = cards)
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
+
+            eventBus.$on('symbol-selected', (symbol) => {
+                this.selectedSymbols = symbol
+            });
 
     },
     methods: {
