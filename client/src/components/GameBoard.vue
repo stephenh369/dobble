@@ -18,6 +18,10 @@ export default {
     mounted() {
         CardService.getCards()
         .then(cards => this.cards = cards);
+
+        this.dealPlayerCard();
+        this.dealOpponentCard();
+
     },
     methods: {
         dealPlayerCard() {
