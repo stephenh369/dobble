@@ -125,7 +125,8 @@ export default {
         border: 1px solid rgba(117, 1, 117, 0.692);
         cursor: pointer;
     }
-    .btn-card:hover {
+    .btn-card:hover,
+    .btn-card:focus {
         background-color: rgba(124, 1, 124, 0.2);
     }
 </style>
