@@ -1,5 +1,6 @@
 <template>
   <div>
+      <timer />
       <player-card :playerCard="playerCard" />
       <opponent-card :opponentCard="opponentCard" />
   </div>
@@ -7,6 +8,7 @@
 
 <script>
 import CardService from '../services/CardService.js'
+import Timer from './Timer.vue'
 import PlayerCard from './PlayerCard.vue'
 import OpponentCard from './OpponentCard.vue'
 import { eventBus } from '@/main.js'
@@ -42,6 +44,7 @@ export default {
         }
     },
     components: {
+        "timer": Timer,
         "player-card": PlayerCard,
         "opponent-card": OpponentCard,
     }
