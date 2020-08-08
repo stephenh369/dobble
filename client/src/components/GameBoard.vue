@@ -1,8 +1,8 @@
 <template>
   <div id="game-board">
       <div class="card-div">
-        <card class="card"/>
-        <card class="card"/>
+        <player-card :playerCard="playerCard" class="card"/>
+        <opponent-card :opponentCard="opponentCard" class="card"/>
       </div>
   </div>
 </template>
@@ -10,12 +10,15 @@
 <script>
 
 import CardService from '../services/CardService.js'
-import Card from './Card'
+import PlayerCard from './PlayerCard.vue'
+import OpponentCard from './OpponentCard.vue'
 import { eventBus } from '@/main.js'
+
 export default {
     name: 'game-board',
     components: {
-        'card': Card
+        'player-card': PlayerCard,
+        'opponent-card': OpponentCard
     },
     data() {
         return {
@@ -63,5 +66,13 @@ export default {
         align-items: center;
        transform: translateY(20vh);
 
+    }
+    .card {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        z-index: 2;
+        background-color: white;
+        border-radius: 50%;
     }
 </style>
