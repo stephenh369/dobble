@@ -15,7 +15,7 @@ MongoClient.connect("mongodb://localhost:27017")
     const db = client.db("dobble");
     const cardsCollection = db.collection("cards");
     const cardsRouter = createRouter(cardsCollection);
-    app.use("/", cardsRouter)
+    app.use("/api/cards", cardsRouter)
   })
   .catch(console.error);
 
