@@ -18,6 +18,7 @@ export default {
             cards: [],
             playerCard: null,
             opponentCard: null,
+            selectedSymbols: []
         }
     },
     mounted() {
@@ -39,7 +40,19 @@ export default {
             } else {
                 this.opponentCard = card;
             }
-        }
+        },
+        twoSymbols() {
+            if (this.selectedSymbols.length === 2) {
+                return true;
+            }
+            return false;
+        },
+        symbolsSame() {
+            if (this.selectedSymbols[0] === selectedSymbols[1]) {
+                return true;
+            }
+            return false;
+        } 
     },
     components: {
         "player-card": PlayerCard,
