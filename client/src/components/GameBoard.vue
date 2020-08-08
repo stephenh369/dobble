@@ -56,6 +56,10 @@ export default {
         checkWin() {
             this.twoSymbols();
             this.symbolsSame();
+            if (this.twoSymbols() === true && this.symbolsSame === true) {
+                return true;
+            }
+            return false;
         } 
     },
     components: {
