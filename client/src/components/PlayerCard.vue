@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import Symbol from '.Symbol.vue'
+    import Symbol from './Symbol.vue'
 export default {
     name: 'player-card',
     props: ['playerCard'],
