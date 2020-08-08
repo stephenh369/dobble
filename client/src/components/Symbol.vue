@@ -11,8 +11,8 @@ export default {
     name: 'symbol',
     props: ['cardSymbol'],
     methods: {
-        handleClick: function() {
-            eventBus.$emit('symbol-selected',this.symbol)
+        handleClick() {
+            eventBus.$emit('symbol-selected', this.cardSymbol)
         }
     }
 
