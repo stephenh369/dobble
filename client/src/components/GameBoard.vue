@@ -1,7 +1,9 @@
 <template>
-  <div>
-      <player-card :playerCard="playerCard" />
-      <opponent-card :opponentCard="opponentCard" />
+  <div id="game-board">
+      <div class="card-div">
+        <player-card :playerCard="playerCard" class="card"/>
+        <opponent-card :opponentCard="opponentCard" class="card"/>
+      </div>
   </div>
 </template>
 
@@ -18,7 +20,11 @@ export default {
             cards: [],
             playerCard: null,
             opponentCard: null,
+<<<<<<< HEAD
             selectedSymbols: []
+=======
+            selectedSymbols: [],
+>>>>>>> develop
         }
     },
     mounted() {
@@ -27,6 +33,7 @@ export default {
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
 
+<<<<<<< HEAD
         eventBus.$on('symbol-selected', (symbol) => { 
             this.selectedSymbols.push(symbol);
             this.checkWin();
@@ -36,6 +43,12 @@ export default {
                 this.incorrectGuess();
             }
         });
+=======
+            eventBus.$on('symbol-selected', (symbol) => {
+                this.selectedSymbols = symbol
+            });
+
+>>>>>>> develop
     },
     methods: {
         dealPlayerCard() {
@@ -90,5 +103,27 @@ export default {
 </script>
 
 <style>
+    #game-board {
+        width: 85vw;
+        height: 75vh;
+        z-index: 1;
+        background: url('../assets/wood-pattern.png') #996100;
+        background-position: center;
+        background-size: auto;
+    }
+    .card-div {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+       transform: translateY(20vh);
 
+    }
+    .card {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        z-index: 2;
+        background-color: white;
+        border-radius: 50%;
+    }
 </style>
