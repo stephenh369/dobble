@@ -1,11 +1,13 @@
 <template>
-  
+  <div>
+      
+  </div>
 </template>
 
 <script>
 
 import CardService from '../services/CardService.js'
-
+import { eventBus } from '@/main.js'
 export default {
     name: 'game-board',
     data() {
@@ -17,10 +19,9 @@ export default {
     },
     mounted() {
         CardService.getCards()
-        .then(cards => this.cards = cards);
-
-        this.dealPlayerCard();
-        this.dealOpponentCard();
+        .then(cards => this.cards = cards)
+        .then(this.dealPlayerCard())
+        .then(this.dealOpponentCard())
 
     },
     methods: {
@@ -30,7 +31,7 @@ export default {
         },
         dealOpponentCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            if (JSON.stringify(card) === JSON.stringify(this.cardOne) ) {
+            if (JSON.stringify(card) === JSON.stringify(this.playerCard) ) {
                 dealOpponentCard();
             } else {
                 this.opponentCard = card;
