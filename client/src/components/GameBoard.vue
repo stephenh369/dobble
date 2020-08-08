@@ -1,8 +1,8 @@
 <template>
   <div id="game-board">
       <div class="card-div">
-        <player-card :playerCard="playerCard" class="card"/>
-        <opponent-card :opponentCard="opponentCard" class="card"/>
+        <player-card :playerCard="dealtPlayerCard" class="card"/>
+        <opponent-card :opponentCard="dealtOpponentCard" class="card"/>
       </div>
   </div>
 </template>
@@ -18,8 +18,8 @@ export default {
     data() {
         return {
             cards: [],
-            playerCard: null,
-            opponentCard: null,
+            dealtPlayerCard: null,
+            dealtOpponentCard: null,
             selectedSymbols: []
         }
     },
@@ -42,14 +42,14 @@ export default {
     methods: {
         dealPlayerCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            this.playerCard = card;
+            this.dealtPlayerCard = card;
         },
         dealOpponentCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            if (JSON.stringify(card) === JSON.stringify(this.playerCard) ) {
+            if (JSON.stringify(card) === JSON.stringify(this.dealtPlayerCard) ) {
                 this.dealOpponentCard();
             } else {
-                this.opponentCard = card;
+                this.dealtOpponentCard = card;
             }
         },
         twoSymbols() {
