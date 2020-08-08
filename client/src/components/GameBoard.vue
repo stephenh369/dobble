@@ -27,6 +27,13 @@ export default {
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
 
+        eventBus.$on('symbol-selected', (symbol) => { 
+            this.selectedSymbols.push(symbol);
+            this.checkWin();
+            if (this.checkWin() === true) {
+                this.selectedSymbols = [];
+            }
+        });
     },
     methods: {
         dealPlayerCard() {
@@ -44,22 +51,25 @@ export default {
         twoSymbols() {
             if (this.selectedSymbols.length === 2) {
                 return true;
-            }
+            } else {
             return false;
+            }
         },
         symbolsSame() {
             if (this.selectedSymbols[0] === this.selectedSymbols[1]) {
                 return true;
-            }
+            } else {
             return false;
+            }
         },
         checkWin() {
             this.twoSymbols();
             this.symbolsSame();
-            if (this.twoSymbols() === true && this.symbolsSame === true) {
+            if (this.twoSymbols() === true && this.symbolsSame() === true) {
                 return true;
-            }
+            } else {
             return false;
+            }
         } 
     },
     components: {
