@@ -122,6 +122,10 @@ export default {
     }
     .btn-card {
         border-radius: 10px;
-        border: 1px solid rgba(124, 1, 124, 0.6);
+        border: 1px solid rgba(117, 1, 117, 0.692);
+        cursor: pointer;
+    }
+    .btn-card:hover {
+        background-color: rgba(124, 1, 124, 0.2);
     }
 </style>
