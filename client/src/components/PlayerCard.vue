@@ -1,6 +1,6 @@
 <template>
-  <div v-if="playerCard">
-    <card-symbol v-for="(oneSymbol, index) of playerCard.symbols" :cardSymbol="oneSymbol" :key="index" />
+  <div class="symbol-div" v-if="playerCard">
+    <card-symbol class="symbol" v-for="(oneSymbol, index) of playerCard.symbols" :cardSymbol="oneSymbol" :key="index" />
   </div>
 </template>
 
@@ -17,6 +17,13 @@ export default {
 </script>
 
 
-<style>
-
+<style scoped>
+  .symbol-div {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+  }
 </style>
