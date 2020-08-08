@@ -4,9 +4,11 @@
 </template>
 
 <script>
-
 import CardService from '../services/CardService.js'
+import PlayerCard from './PlayerCard.vue'
+import OpponentCard from './OpponentCard.vue'
 import { eventBus } from '@/main.js'
+
 export default {
     name: 'game-board',
     data() {
@@ -36,6 +38,10 @@ export default {
                 this.opponentCard = card;
             }
         }
+    },
+    components: {
+        "player-card": PlayerCard,
+        "opponent-card": OpponentCard,
     }
 }    
 </script>

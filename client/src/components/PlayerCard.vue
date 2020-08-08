@@ -7,8 +7,8 @@
 <script>
     import Symbol from '.Symbol.vue'
 export default {
-    name: 'card',
-    props: ['card'],
+    name: 'player-card',
+    props: ['playerCard'],
     components: {
       'symbol': Symbol
     }
