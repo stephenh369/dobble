@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="game-board">
   </div>
 </template>
 
@@ -41,5 +41,13 @@ export default {
 </script>
 
 <style>
+    #game-board {
+        width: 85vw;
+        height: 75vh;
+        z-index: 1;
+        background: url('../assets/wood-pattern.png') #996100;
+        background-position: center;
+        background-size: auto;
 
+    }
 </style>
