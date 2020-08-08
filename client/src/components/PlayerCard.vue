@@ -10,7 +10,7 @@ export default {
     name: 'player-card',
     props: ['playerCard'],
     components: {
-      'symbol': Symbol
+      'card-symbol': Symbol
     }
 
 }

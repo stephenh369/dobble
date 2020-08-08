@@ -1,5 +1,7 @@
 <template>
   <div>
+      <player-card :playerCard="playerCard" />
+      <opponent-card :opponentCard="opponentCard" />
   </div>
 </template>
 
