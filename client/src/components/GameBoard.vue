@@ -109,7 +109,13 @@ export default {
         width: 150px;
         height: 150px;
         z-index: 2;
-        background-color: white;
+        background-color: #f4f4f4;
         border-radius: 50%;
+        box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    }
+    .card:hover {
+        box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.75);
+        background-color: white;
+        transition: 0.3s;
     }
 </style>
