@@ -1,8 +1,8 @@
 <template>
   <div id="game-board">
       <div class="card-div">
-        <player-card :playerCard="playerCard" class="card"/>
-        <opponent-card :opponentCard="opponentCard" class="card"/>
+        <player-card :playerCard="dealtPlayerCard" class="card"/>
+        <opponent-card :opponentCard="dealtOpponentCard" class="card"/>
       </div>
   </div>
 </template>
@@ -18,9 +18,9 @@ export default {
     data() {
         return {
             cards: [],
-            playerCard: null,
-            opponentCard: null,
-            selectedSymbols: [],
+            dealtPlayerCard: null,
+            dealtOpponentCard: null,
+            selectedSymbols: []
         }
     },
     mounted() {
@@ -29,22 +29,27 @@ export default {
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
 
-            eventBus.$on('symbol-selected', (symbol) => {
-                this.selectedSymbols = symbol
-            });
-
+        eventBus.$on('symbol-selected', (symbol) => { 
+            this.selectedSymbols.push(symbol);
+            this.checkWin();
+            if (this.checkWin() === true) {
+                this.winRound();
+            } else {
+                this.incorrectGuess();
+            }
+        });
     },
     methods: {
         dealPlayerCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            this.playerCard = card;
+            this.dealtPlayerCard = card;
         },
         dealOpponentCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            if (JSON.stringify(card) === JSON.stringify(this.playerCard) ) {
+            if (JSON.stringify(card) === JSON.stringify(this.dealtPlayerCard) ) {
                 this.dealOpponentCard();
             } else {
-                this.opponentCard = card;
+                this.dealtOpponentCard = card;
             }
         },
         twoSymbols() {

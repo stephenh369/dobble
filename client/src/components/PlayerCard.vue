@@ -1,7 +1,7 @@
 <template>
-  <ul>
-  <symbol></symbol>
-  </ul>
+  <div v-if="playerCard">
+    <card-symbol v-for="(symbol, index) of playerCard.symbols" :cardSymbol="symbol" :key="index" />
+  </div>
 </template>
 
 <script>

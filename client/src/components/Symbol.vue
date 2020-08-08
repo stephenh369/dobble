@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button v-on:click="handleClick" :symbol="symbol"></button>
+      <button v-on:click="handleClick">{{ cardSymbol }}</button>
     </div>
 </template>
 
@@ -9,7 +9,7 @@ import { eventBus } from '@/main.js';
 
 export default {
     name: 'symbol',
-    props: ['symbol'],
+    props: ['cardSymbol'],
     methods: {
         handleClick: function() {
             eventBus.$emit('symbol-selected',this.symbol)
