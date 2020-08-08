@@ -31,7 +31,9 @@ export default {
             this.selectedSymbols.push(symbol);
             this.checkWin();
             if (this.checkWin() === true) {
-                this.selectedSymbols = [];
+                this.winRound();
+            } else {
+                this.incorrectGuess();
             }
         });
     },
@@ -70,7 +72,15 @@ export default {
             } else {
             return false;
             }
-        } 
+        },
+        incorrectGuess() {
+            this.selectedSymbols = [];
+        },
+        winRound() {
+            this.selectedSymbols = [];
+            this.dealPlayerCard();
+            this.dealOpponentCard();
+        }
     },
     components: {
         "player-card": PlayerCard,
