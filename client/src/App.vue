@@ -1,5 +1,7 @@
 <template>
-  
+  <div>
+    <game-board />
+  </div>
 </template>
 
 <script>
