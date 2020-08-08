@@ -30,7 +30,7 @@ export default {
         },
         dealOpponentCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            if (JSON.stringify(this.card) === JSON.stringify(this.cardOne) ) {
+            if (JSON.stringify(card) === JSON.stringify(this.cardOne) ) {
                 dealOpponentCard();
             } else {
                 this.opponentCard = card;
