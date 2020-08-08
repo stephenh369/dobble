@@ -20,11 +20,7 @@ export default {
             cards: [],
             playerCard: null,
             opponentCard: null,
-<<<<<<< HEAD
-            selectedSymbols: []
-=======
             selectedSymbols: [],
->>>>>>> develop
         }
     },
     mounted() {
@@ -33,22 +29,10 @@ export default {
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
 
-<<<<<<< HEAD
-        eventBus.$on('symbol-selected', (symbol) => { 
-            this.selectedSymbols.push(symbol);
-            this.checkWin();
-            if (this.checkWin() === true) {
-                this.winRound();
-            } else {
-                this.incorrectGuess();
-            }
-        });
-=======
             eventBus.$on('symbol-selected', (symbol) => {
                 this.selectedSymbols = symbol
             });
 
->>>>>>> develop
     },
     methods: {
         dealPlayerCard() {
