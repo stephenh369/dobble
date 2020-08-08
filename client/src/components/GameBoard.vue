@@ -15,10 +15,6 @@ import { eventBus } from '@/main.js'
 
 export default {
     name: 'game-board',
-    components: {
-        'player-card': PlayerCard,
-        'opponent-card': OpponentCard
-    },
     data() {
         return {
             cards: [],
