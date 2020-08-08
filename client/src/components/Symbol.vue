@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button v-on:click="handleClick">{{ cardSymbol }}</button>
+      <button class="btn-card" v-on:click="handleClick">{{ cardSymbol }}</button>
     </div>
 </template>
 

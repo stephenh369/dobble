@@ -96,12 +96,13 @@ export default {
         background: url('../assets/wood-pattern.png') #996100;
         background-position: center;
         background-size: auto;
+        border-radius: 2rem;
     }
     .card-div {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-       transform: translateY(20vh);
+        transform: translateY(20vh);
 
     }
     .card {
@@ -111,11 +112,16 @@ export default {
         z-index: 2;
         background-color: #f4f4f4;
         border-radius: 50%;
+        border: 1px solid rgba(124, 1, 124, 0.6);
         box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
     }
     .card:hover {
         box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.75);
         background-color: white;
         transition: 0.3s;
+    }
+    .btn-card {
+        border-radius: 10px;
+        border: 1px solid rgba(124, 1, 124, 0.6);
     }
 </style>
