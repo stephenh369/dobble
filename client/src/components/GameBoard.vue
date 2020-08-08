@@ -1,14 +1,22 @@
 <template>
   <div id="game-board">
+      <div class="card-div">
+        <card class="card"/>
+        <card class="card"/>
+      </div>
   </div>
 </template>
 
 <script>
 
 import CardService from '../services/CardService.js'
+import Card from './Card'
 import { eventBus } from '@/main.js'
 export default {
     name: 'game-board',
+    components: {
+        'card': Card
+    },
     data() {
         return {
             cards: [],
@@ -48,6 +56,12 @@ export default {
         background: url('../assets/wood-pattern.png') #996100;
         background-position: center;
         background-size: auto;
+    }
+    .card-div {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+       transform: translateY(20vh);
 
     }
 </style>
