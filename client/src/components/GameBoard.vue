@@ -1,5 +1,6 @@
 <template>
   <div id="game-board">
+      <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
         <player-card :playerCard="dealtPlayerCard" class="card"/>
         <opponent-card :opponentCard="dealtOpponentCard" class="card"/>
@@ -97,6 +98,14 @@ export default {
         background-position: center;
         background-size: auto;
         border-radius: 2rem;
+    }
+    .logo {
+        position: absolute;
+        top: 18%;
+        left: 50%;
+        transform: translate(-50%, -18%);
+        width: 80px;
+        height: 80px;
     }
     .card-div {
         display: flex;
