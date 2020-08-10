@@ -5,11 +5,16 @@
 </template>
 
 <script>
+import { eventBus } from "@/main.js";
 import GameBoard from './components/GameBoard'
 
 export default {
   components: {
     "game-board": GameBoard
+  },
+
+  mounted () {
+    eventBus.$on("time-up", () => console.log("Round over: time expired"));
   }
 
 }
