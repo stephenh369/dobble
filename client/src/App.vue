@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <game-board v-if="! gameOver"/>
-    <div v-if="gameOver">Hi</div>
+    <game-over v-if="gameOver" />
   </div>
 </template>
 
 <script>
 import { eventBus } from "@/main.js";
-import GameBoard from './components/GameBoard'
+import GameBoard from './components/GameBoard';
+import GameOver from './components/GameOver';
 
 export default {
   data () {
@@ -16,7 +17,8 @@ export default {
     }
   },
   components: {
-    "game-board": GameBoard
+    "game-board": GameBoard,
+    "game-over": GameOver
   },
 
   mounted () {
@@ -24,6 +26,11 @@ export default {
       console.log("Round over: time expired")
       this.gameOver = true;
     });
+
+    eventBus.$on("restart-game", () => {
+      console.log("Restarting game...");
+      this.gameOver = false;
+    })
   }
 
 }
