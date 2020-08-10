@@ -73,6 +73,7 @@ export default {
     border-radius: 10px;
     width: 12.5%;
     padding: 10px 5px;
+    cursor: pointer;
   }
   .btn:hover {
     background-color: #EBEC83;
