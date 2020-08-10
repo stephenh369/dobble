@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div>{{score.name}}</div>
-        <div>{{score.score}}</div>
+        <div class="score-item">{{score.name}}</div>
+        <div class="score-item">{{score.score}}</div>
 
     </div>
   
@@ -17,6 +17,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.score-item {
+    color: #FFFFFF;
+}
 
 </style>

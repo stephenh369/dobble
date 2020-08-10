@@ -1,6 +1,6 @@
 <template>
   <div>
-      <score v-for="(score, index) in scores" :score="score" :key="index"></score>
+      <score v-for="(score, index) in scores" :score="score" :key="index" ></score>
   </div>
 </template>
 
@@ -10,7 +10,6 @@ import Score from './Score'
 
 export default {
     name: 'score-list',
-    components: 'score',
     data() {
         return {
             scores: []
@@ -19,8 +18,10 @@ export default {
     mounted() {
         ScoreService.getScores()
             .then(scores => this.scores = scores);
-    }
-
+    },
+    components: {
+        'score': Score
+        }
 }
 </script>
 
