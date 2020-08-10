@@ -3,6 +3,7 @@
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <button id="main-menu-start" class="btn" v-on:click="handleClick">Start Game</button>
       <button id="main-menu-scores" class="btn">High Scores</button>
+      <button id="main-menu-tutorial" class="btn">Tutorial</button>
   </div>
 </template>
 
@@ -36,5 +37,11 @@ export default {
     top: 66%;
     left: 50%;
     transform: translate(-50%, -66%);
+  }
+    #main-menu-tutorial {
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -82%);
   }
 </style>
