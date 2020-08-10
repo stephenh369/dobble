@@ -1,10 +1,11 @@
 <template>
   <div class="symbol-div" v-if="opponentCard">
-    <card-symbol class="symbol" 
+    <card-symbol 
                  v-for="(oneSymbol, index) of opponentCard.symbols" 
                  v-on:click.native="handleClick(oneSymbol)" 
                  :cardSymbol="oneSymbol" 
-                 :key="index" />
+                 :key="index"
+                 v-bind:class= "selectedSymbol === oneSymbol ? 'selected symbol' : 'symbol' " />
   </div>
 </template>
 
@@ -22,6 +23,9 @@
     props: ['opponentCard'],
     components: {
       'card-symbol': CardSymbol
+    },
+    mounted() {
+      eventBus.$on('guess-over', () => this.selectedSymbol = null);
     },
     methods: {
         handleClick(clickedSymbol) {
@@ -47,5 +51,8 @@
     align-items: center;
     padding: 20px;
     overflow: hidden;
+  }
+  .selected {
+    border: 1px red solid;
   }
 </style>

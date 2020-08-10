@@ -77,11 +77,13 @@ export default {
         },
         incorrectGuess() {
             this.selectedSymbols = [];
+            eventBus.$emit('guess-over');
         },
         winRound() {
             this.selectedSymbols = [];
             this.dealPlayerCard();
             this.dealOpponentCard();
+            eventBus.$emit('guess-over');
         }
     },
     components: {
