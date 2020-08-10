@@ -1,6 +1,7 @@
 <template>
   <div id="game-board">
       <timer />
+      <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
         <player-card :playerCard="dealtPlayerCard" class="card"/>
         <opponent-card :opponentCard="dealtOpponentCard" class="card"/>
@@ -39,6 +40,8 @@ export default {
                 this.incorrectGuess();
             }
         });
+
+        eventBus.$on("symbol-changed", cardSymbol => this.selectedSymbols = [cardSymbol])
     },
     methods: {
         dealPlayerCard() {
@@ -76,11 +79,13 @@ export default {
         },
         incorrectGuess() {
             this.selectedSymbols = [];
+            eventBus.$emit('guess-over');
         },
         winRound() {
             this.selectedSymbols = [];
             this.dealPlayerCard();
             this.dealOpponentCard();
+            eventBus.$emit('guess-over');
         }
     },
     components: {
@@ -100,6 +105,14 @@ export default {
         background-position: center;
         background-size: auto;
         border-radius: 2rem;
+    }
+    .logo {
+        position: absolute;
+        top: 18%;
+        left: 50%;
+        transform: translate(-50%, -18%);
+        width: 80px;
+        height: 80px;
     }
     .card-div {
         display: flex;
