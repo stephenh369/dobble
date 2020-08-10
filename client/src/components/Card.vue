@@ -1,33 +1,32 @@
 <template>
-  <div class="symbol-div" v-if="opponentCard">
-    <card-symbol 
-                 v-for="(oneSymbol, index) of opponentCard.symbols" 
+  <div class="symbol-div" v-if="card">
+    <card-symbol
+                 v-for="(oneSymbol, index) of card.symbols" 
                  v-on:click.native="handleClick(oneSymbol)" 
                  :cardSymbol="oneSymbol" 
                  :key="index"
-                 v-bind:class= "selectedSymbol === oneSymbol ? 'selected symbol' : 'symbol' " />
+                 v-bind:class= "selectedSymbol === oneSymbol ? 'selected symbol' : 'symbol' "/>
   </div>
 </template>
 
 <script>
-  import { eventBus } from "@/main.js";
-  import CardSymbol from './Symbol.vue'
-  
-  export default {
-    name: 'opponent-card',
-    data () {
-      return {
-        selectedSymbol: null
-      }
-    },
-    props: ['opponentCard'],
-    components: {
-      'card-symbol': CardSymbol
-    },
-    mounted() {
-      eventBus.$on('guess-over', () => this.selectedSymbol = null);
-    },
-    methods: {
+    import { eventBus } from "@/main.js";
+    import CardSymbol from './Symbol.vue'
+    export default {
+      name: 'card',
+      data () {
+        return {
+          selectedSymbol: null
+        }
+      },
+      props: ['card'],
+      components: {
+        'card-symbol': CardSymbol
+      },
+      mounted() {
+        eventBus.$on('guess-over', () => this.selectedSymbol = null);
+      },
+      methods: {
         handleClick(clickedSymbol) {
           if (this.selectedSymbol === null) {
             this.selectedSymbol = clickedSymbol;

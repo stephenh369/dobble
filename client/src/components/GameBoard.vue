@@ -4,8 +4,8 @@
       <div id="score-display">Score: {{score}}</div>
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
-        <player-card :playerCard="dealtPlayerCard" class="card"/>
-        <opponent-card :opponentCard="dealtOpponentCard" class="card"/>
+        <card :card="dealtLeftCard" class="card"/>
+        <card :card="dealtRightCard" class="card"/>
       </div>
   </div>
 </template>
@@ -13,8 +13,7 @@
 <script>
 import CardService from '../services/CardService.js'
 import Timer from './Timer.vue'
-import PlayerCard from './PlayerCard.vue'
-import OpponentCard from './OpponentCard.vue'
+import Card from './Card.vue'
 import { eventBus } from '@/main.js'
 
 export default {
@@ -23,8 +22,8 @@ export default {
     data() {
         return {
             cards: [],
-            dealtPlayerCard: null,
-            dealtOpponentCard: null,
+            dealtLeftCard: null,
+            dealtRightCard: null,
             selectedSymbols: [],
             score: 0
         }
@@ -33,14 +32,14 @@ export default {
     mounted() {
         CardService.getCards()
             .then(cards => this.cards = cards)
-            .then(() => this.dealPlayerCard())
-            .then(() => this.dealOpponentCard());
+            .then(() => this.dealLeftCard())
+            .then(() => this.dealRightCard());
 
         eventBus.$on('symbol-selected', (cardSymbol) => { 
             this.selectedSymbols.push(cardSymbol);
-            if (this.checkWin() === true) {
+            if (this.checkWin) {
                 this.winRound();
-            } else if (this.twoSymbols() === true && this.symbolsSame() === false){
+            } else if (this.twoSymbols && !this.symbolsSame) {
                 this.incorrectGuess();
             }
         });
@@ -54,39 +53,28 @@ export default {
         })
 
     },
-
-    methods: {
-        dealPlayerCard() {
-            const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            this.dealtPlayerCard = card;
-        },
-        dealOpponentCard() {
-            const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            if (JSON.stringify(card) === JSON.stringify(this.dealtPlayerCard) ) {
-                this.dealOpponentCard();
-            } else {
-                this.dealtOpponentCard = card;
-            }
-        },
+    computed: {
         twoSymbols() {
-            if (this.selectedSymbols.length === 2) {
-                return true;
-            } else {
-            return false;
-            }
+            return this.selectedSymbols.length === 2;
         },
         symbolsSame() {
-            if (this.selectedSymbols[0] === this.selectedSymbols[1]) {
-                return true;
-            } else {
-            return false;
-            }
+            return this.selectedSymbols[0] === this.selectedSymbols[1];
         },
         checkWin() {
-            if (this.twoSymbols() === true && this.symbolsSame() === true) {
-                return true;
+            return this.twoSymbols && this.symbolsSame;
+        }
+    },
+    methods: {
+        dealLeftCard() {
+            const card = this.cards[Math.floor(Math.random() * this.cards.length)];
+            this.dealtLeftCard = card;
+        },
+        dealRightCard() {
+            const card = this.cards[Math.floor(Math.random() * this.cards.length)];
+            if (JSON.stringify(card) === JSON.stringify(this.dealtLeftCard) ) {
+                this.dealRightCard();
             } else {
-            return false;
+                this.dealtRightCard = card;
             }
         },
         incorrectGuess() {
@@ -96,16 +84,15 @@ export default {
         winRound() {
             this.score += 1;
             this.selectedSymbols = [];
-            this.dealPlayerCard();
-            this.dealOpponentCard();
+            this.dealLeftCard();
+            this.dealRightCard();
             eventBus.$emit('guess-over');
         }
     },
     
     components: {
         "timer": Timer,
-        "player-card": PlayerCard,
-        "opponent-card": OpponentCard,
+        "card": Card
     }
 }    
 </script>
