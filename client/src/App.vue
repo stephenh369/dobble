@@ -55,6 +55,10 @@ export default {
     eventBus.$on("tutorial", () => {
       this.pageDisplay = "tutorial";
     });
+
+    eventBus.$on("main-menu", () => {
+      this.pageDisplay = "main-menu";
+    });
   }
 
 }
