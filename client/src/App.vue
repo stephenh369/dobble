@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <game-board />
+    <game-board v-if="! gameOver"/>
+    <div v-if="gameOver">Hi</div>
   </div>
 </template>
 
@@ -9,12 +10,20 @@ import { eventBus } from "@/main.js";
 import GameBoard from './components/GameBoard'
 
 export default {
+  data () {
+    return {
+      gameOver: false
+    }
+  },
   components: {
     "game-board": GameBoard
   },
 
   mounted () {
-    eventBus.$on("time-up", () => console.log("Round over: time expired"));
+    eventBus.$on("time-up", () => {
+      console.log("Round over: time expired")
+      this.gameOver = true;
+    });
   }
 
 }
