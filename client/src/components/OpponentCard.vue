@@ -25,9 +25,13 @@
     },
     methods: {
         handleClick(clickedSymbol) {
-          console.log("click detected");
-          this.selectedSymbol = clickedSymbol;
-          eventBus.$emit('symbol-selected', this.selectedSymbol);
+          if (this.selectedSymbol === null) {
+            this.selectedSymbol = clickedSymbol;
+            eventBus.$emit('symbol-selected', this.selectedSymbol);
+          } else {
+            this.selectedSymbol = clickedSymbol;
+            eventBus.$emit('symbol-changed', this.selectedSymbol);
+          }
         }
       }
 

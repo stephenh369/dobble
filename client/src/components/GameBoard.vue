@@ -38,6 +38,8 @@ export default {
                 this.incorrectGuess();
             }
         });
+
+        eventBus.$on("symbol-changed", cardSymbol => this.selectedSymbols = [cardSymbol])
     },
     methods: {
         dealPlayerCard() {
