@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <game-board v-if="! gameOver"/>
-    <game-over v-if="gameOver" />
+    <game-over v-if="gameOver" :score="finalScore"/>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ import GameOver from './components/GameOver';
 export default {
   data () {
     return {
+      finalScore: 0,
       gameOver: false
     }
   },
@@ -22,8 +23,9 @@ export default {
   },
 
   mounted () {
-    eventBus.$on("time-up", () => {
-      console.log("Round over: time expired")
+    eventBus.$on("game-over", score => {
+      console.log("Game over: time expired")
+      this.finalScore = score;
       this.gameOver = true;
     });
 

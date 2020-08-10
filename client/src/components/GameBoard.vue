@@ -18,14 +18,17 @@ import { eventBus } from '@/main.js'
 
 export default {
     name: 'game-board',
+
     data() {
         return {
             cards: [],
             dealtPlayerCard: null,
             dealtOpponentCard: null,
-            selectedSymbols: []
+            selectedSymbols: [],
+            score: 0
         }
     },
+
     mounted() {
         CardService.getCards()
         .then(cards => this.cards = cards)
@@ -41,8 +44,16 @@ export default {
             }
         });
 
-        eventBus.$on("symbol-changed", cardSymbol => this.selectedSymbols = [cardSymbol])
+        eventBus.$on("symbol-changed", cardSymbol => {
+            this.selectedSymbols = [cardSymbol]
+        });
+
+        eventBus.$on("time-up", () => {
+            eventBus.$emit("game-over", this.score)
+        })
+
     },
+
     methods: {
         dealPlayerCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
@@ -82,12 +93,14 @@ export default {
             eventBus.$emit('guess-over');
         },
         winRound() {
+            this.score += 1;
             this.selectedSymbols = [];
             this.dealPlayerCard();
             this.dealOpponentCard();
             eventBus.$emit('guess-over');
         }
     },
+    
     components: {
         "timer": Timer,
         "player-card": PlayerCard,
