@@ -61,4 +61,13 @@ export default {
     z-index: 0;
     background-color: black;
   }
+  .btn {
+    background-color: #E4E660;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .btn:hover {
+    background-color: #EBEC83;
+  }
 </style>
