@@ -4,8 +4,8 @@
       <div id="score-display">Score: {{score}}</div>
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
-        <card :card="dealtPlayerCard" class="card"/>
-        <card :card="dealtOpponentCard" class="card"/>
+        <card :card="dealtLeftCard" class="card"/>
+        <card :card="dealtRightCard" class="card"/>
       </div>
   </div>
 </template>
@@ -22,8 +22,8 @@ export default {
     data() {
         return {
             cards: [],
-            dealtPlayerCard: null,
-            dealtOpponentCard: null,
+            dealtLeftCard: null,
+            dealtRightCard: null,
             selectedSymbols: [],
             score: 0
         }
@@ -32,8 +32,8 @@ export default {
     mounted() {
         CardService.getCards()
             .then(cards => this.cards = cards)
-            .then(() => this.dealPlayerCard())
-            .then(() => this.dealOpponentCard());
+            .then(() => this.dealLeftCard())
+            .then(() => this.dealRightCard());
 
         eventBus.$on('symbol-selected', (cardSymbol) => { 
             this.selectedSymbols.push(cardSymbol);
@@ -65,16 +65,16 @@ export default {
         }
     },
     methods: {
-        dealPlayerCard() {
+        dealLeftCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            this.dealtPlayerCard = card;
+            this.dealtLeftCard = card;
         },
-        dealOpponentCard() {
+        dealRightCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            if (JSON.stringify(card) === JSON.stringify(this.dealtPlayerCard) ) {
-                this.dealOpponentCard();
+            if (JSON.stringify(card) === JSON.stringify(this.dealtLeftCard) ) {
+                this.dealRightCard();
             } else {
-                this.dealtOpponentCard = card;
+                this.dealtRightCard = card;
             }
         },
         incorrectGuess() {
@@ -84,8 +84,8 @@ export default {
         winRound() {
             this.score += 1;
             this.selectedSymbols = [];
-            this.dealPlayerCard();
-            this.dealOpponentCard();
+            this.dealLeftCard();
+            this.dealRightCard();
             eventBus.$emit('guess-over');
         }
     },
