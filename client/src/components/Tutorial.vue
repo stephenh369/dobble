@@ -57,9 +57,11 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
   }
   .tutorial-p {
     width: 75vw;
+    max-width: 720px;
     margin: 10px 0;
     padding: 10px;
     border: 1px solid black;
