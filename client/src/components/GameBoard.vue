@@ -32,7 +32,7 @@ export default {
 
     mounted() {
         CardService.getCards()
-        .then(cards => this.cards = cards)
+            .then(cards => this.cards = cards)
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
 

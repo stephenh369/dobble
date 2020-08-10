@@ -2,6 +2,8 @@ use dobble;
 
 db.dropDatabase();
 
+db.scores.insertOne({ name: "Helena", score: 0 });
+
 db.cards.insertMany([
   {  // CARD 1
     symbols: [
