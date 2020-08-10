@@ -2,7 +2,7 @@
   <div id="app">
     <main-menu v-if="!gameStart && !gameOver && !viewScores" />
     <game-board v-if="!gameOver && gameStart"/>
-    <game-over v-if="gameOver" />
+    <game-over v-if="gameOver" :score="finalScore" />
     <score-list v-if="viewScores" />
   </div>
 </template>
@@ -17,6 +17,7 @@ import ScoreList from './components/ScoreList';
 export default {
   data () {
     return {
+      finalScore: 0,
       gameStart: false,
       gameOver: false,
       viewScores: false
@@ -30,8 +31,9 @@ export default {
   },
 
   mounted () {
-    eventBus.$on("time-up", () => {
-      console.log("Round over: time expired")
+    eventBus.$on("game-over", score => {
+      console.log("Game over: time expired")
+      this.finalScore = score;
       this.gameOver = true;
     });
 

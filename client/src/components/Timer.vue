@@ -1,6 +1,6 @@
 <template>
   <div id="timer">
-    {{this.timeRemaining}}
+    Time left: {{this.timeRemaining}}
   </div>
 </template>
 
