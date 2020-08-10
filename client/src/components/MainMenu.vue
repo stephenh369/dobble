@@ -1,8 +1,8 @@
 <template>
   <div id="main-menu">
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
-      <button id="main-menu-start" class="btn" v-on:click="handleClick">Start Game</button>
-      <button id="main-menu-scores" class="btn">High Scores</button>
+      <button id="main-menu-start" class="btn" v-on:click="startGame">Start Game</button>
+      <button id="main-menu-scores" class="btn" v-on:click="highScores">High Scores</button>
       <button id="main-menu-tutorial" class="btn">Tutorial</button>
   </div>
 </template>
@@ -11,8 +11,11 @@
 import { eventBus } from '@/main.js';
 export default {
   methods: {
-    handleClick () {
+    startGame () {
       eventBus.$emit("start-game")
+    },
+    highScores () {
+      eventBus.$emit("high-scores")
     }
   }
 }

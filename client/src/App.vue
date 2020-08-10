@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <main-menu v-if="!gameStart && !gameOver" />
+    <main-menu v-if="!gameStart && !gameOver && !viewScores" />
     <game-board v-if="!gameOver && gameStart"/>
     <game-over v-if="gameOver" />
+    <score-list v-if="viewScores" />
   </div>
 </template>
 
@@ -11,18 +12,21 @@ import { eventBus } from "@/main.js";
 import MainMenu from './components/MainMenu';
 import GameBoard from './components/GameBoard';
 import GameOver from './components/GameOver';
+import ScoreList from './components/ScoreList';
 
 export default {
   data () {
     return {
       gameStart: false,
-      gameOver: false
+      gameOver: false,
+      viewScores: false
     }
   },
   components: {
     "main-menu": MainMenu,
     "game-board": GameBoard,
-    "game-over": GameOver
+    "game-over": GameOver,
+    "score-list": ScoreList
   },
 
   mounted () {
@@ -41,6 +45,10 @@ export default {
       console.log("starting game...");
       this.gameOver = false;
       this.gameStart = true;
+    });
+
+    eventBus.$on("high-scores", () => {
+      this.viewScores = true;
     })
   }
 
