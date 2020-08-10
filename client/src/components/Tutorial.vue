@@ -39,7 +39,7 @@ export default {
   #tutorial {
     background-color: rgb(141, 83, 141);
     width: 100vw;
-    height: 100vh;
+    height: 100%;
   }
   #tutorial-heading-div {
     display: flex;

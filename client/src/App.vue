@@ -69,13 +69,15 @@ export default {
     box-sizing: border-box;
     margin: 0;
   }
+  body {
+    background-color: rgb(141, 83, 141);
+  }
   #app {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    z-index: 0;
     background-color: black;
   }
   .btn {
