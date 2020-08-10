@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div id="game-board">
       <timer />
-      <player-card :playerCard="playerCard" />
-      <opponent-card :opponentCard="opponentCard" />
+      <div class="card-div">
+        <player-card :playerCard="dealtPlayerCard" class="card"/>
+        <opponent-card :opponentCard="dealtOpponentCard" class="card"/>
+      </div>
   </div>
 </template>
 
@@ -18,8 +20,9 @@ export default {
     data() {
         return {
             cards: [],
-            playerCard: null,
-            opponentCard: null,
+            dealtPlayerCard: null,
+            dealtOpponentCard: null,
+            selectedSymbols: []
         }
     },
     mounted() {
@@ -28,19 +31,56 @@ export default {
             .then(() => this.dealPlayerCard())
             .then(() => this.dealOpponentCard());
 
+        eventBus.$on('symbol-selected', (cardSymbol) => { 
+            this.selectedSymbols.push(cardSymbol);
+            if (this.checkWin() === true) {
+                this.winRound();
+            } else if (this.twoSymbols() === true && this.symbolsSame() === false){
+                this.incorrectGuess();
+            }
+        });
     },
     methods: {
         dealPlayerCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            this.playerCard = card;
+            this.dealtPlayerCard = card;
         },
         dealOpponentCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
-            if (JSON.stringify(card) === JSON.stringify(this.playerCard) ) {
+            if (JSON.stringify(card) === JSON.stringify(this.dealtPlayerCard) ) {
                 this.dealOpponentCard();
             } else {
-                this.opponentCard = card;
+                this.dealtOpponentCard = card;
             }
+        },
+        twoSymbols() {
+            if (this.selectedSymbols.length === 2) {
+                return true;
+            } else {
+            return false;
+            }
+        },
+        symbolsSame() {
+            if (this.selectedSymbols[0] === this.selectedSymbols[1]) {
+                return true;
+            } else {
+            return false;
+            }
+        },
+        checkWin() {
+            if (this.twoSymbols() === true && this.symbolsSame() === true) {
+                return true;
+            } else {
+            return false;
+            }
+        },
+        incorrectGuess() {
+            this.selectedSymbols = [];
+        },
+        winRound() {
+            this.selectedSymbols = [];
+            this.dealPlayerCard();
+            this.dealOpponentCard();
         }
     },
     components: {
@@ -52,5 +92,43 @@ export default {
 </script>
 
 <style>
-
+    #game-board {
+        width: 85vw;
+        height: 75vh;
+        z-index: 1;
+        background: url('../assets/wood-pattern.png') #996100;
+        background-position: center;
+        background-size: auto;
+        border-radius: 2rem;
+    }
+    .card-div {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        transform: translateY(20vh);
+    }
+    .card {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        z-index: 2;
+        background-color: #f4f4f4;
+        border-radius: 50%;
+        border: 1px solid rgba(124, 1, 124, 0.6);
+        box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    }
+    .card:hover {
+        box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.75);
+        background-color: white;
+        transition: 0.3s;
+    }
+    .btn-card {
+        border-radius: 10px;
+        border: 1px solid rgba(117, 1, 117, 0.692);
+        cursor: pointer;
+    }
+    .btn-card:hover,
+    .btn-card:focus {
+        background-color: rgba(124, 1, 124, 0.2);
+    }
 </style>

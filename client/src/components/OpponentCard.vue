@@ -1,22 +1,29 @@
 <template>
-  <ul>
-  <symbol></symbol>
-  </ul>
+  <div class="symbol-div" v-if="opponentCard">
+    <card-symbol class="symbol" v-for="(oneSymbol, index) of opponentCard.symbols" :cardSymbol="oneSymbol" :key="index" />
+  </div>
 </template>
 
 <script>
-    import Symbol from './Symbol.vue'
+    import CardSymbol from './Symbol.vue'
 export default {
     name: 'opponent-card',
     props: ['opponentCard'],
     components: {
-      'card-symbol': Symbol
+      'card-symbol': CardSymbol
     }
 
 }
 </script>
 
 
-<style>
-
+<style scoped>
+  .symbol-div {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+  }
 </style>
