@@ -1,6 +1,7 @@
 <template>
   <div id="game-board">
       <timer />
+      <div id="score-display">Score: {{score}}</div>
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
         <player-card :playerCard="dealtPlayerCard" class="card"/>

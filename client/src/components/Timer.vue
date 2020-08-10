@@ -1,6 +1,6 @@
 <template>
   <div id="timer">
-    {{this.timeRemaining}}
+    Time left: {{this.timeRemaining}}
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   data () {
     return {
       // TODO change time limit to 30 before going to production
-      timeLimit: 5,  // round time limit in seconds
+      timeLimit: 30,  // round time limit in seconds
       timeRemaining: null  // time remaining on this round
     };
   },
