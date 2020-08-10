@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <main-menu v-if="!gameStart && !gameOver && !viewScores" />
-    <game-board v-if="!gameOver && gameStart"/>
-    <game-over v-if="gameOver" :score="finalScore" />
-    <score-list v-if="viewScores" />
+    <main-menu v-if="pageDisplay === 'main-menu'" />
+    <game-board v-if="pageDisplay === 'game-board'"/>
+    <game-over v-if="pageDisplay === 'game-over'" :score="finalScore" />
+    <score-list v-if="pageDisplay === 'score-list'" />
   </div>
 </template>
 
@@ -18,9 +18,7 @@ export default {
   data () {
     return {
       finalScore: 0,
-      gameStart: false,
-      gameOver: false,
-      viewScores: false
+      pageDisplay: "main-menu"
     }
   },
   components: {
@@ -34,24 +32,22 @@ export default {
     eventBus.$on("game-over", score => {
       console.log("Game over: time expired")
       this.finalScore = score;
-      this.gameOver = true;
+      this.pageDisplay = "game-over";
     });
 
     eventBus.$on("restart-game", () => {
       console.log("Restarting game...");
-      this.gameOver = false;
-      this.gameStart = true;
+      this.pageDisplay = "game-board";
     });
 
     eventBus.$on("start-game", () => {
       console.log("starting game...");
-      this.gameOver = false;
-      this.gameStart = true;
+      this.pageDisplay = "game-board";
     });
 
     eventBus.$on("high-scores", () => {
-      this.viewScores = true;
-    })
+      this.pageDisplay = "score-list";
+    });
   }
 
 }
