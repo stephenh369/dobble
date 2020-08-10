@@ -19,5 +19,13 @@ export default {
         return fetch(baseURL + id, {
             method: 'DELETE'
         })
+    },
+
+    resetScores() {
+        return fetch(baseURL, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
     }
+
 }
