@@ -9,6 +9,7 @@
 import { eventBus } from "@/main.js";
 import GameBoard from './components/GameBoard';
 import GameOver from './components/GameOver';
+import ScoreList from './components/ScoreList';
 
 export default {
   data () {
@@ -18,7 +19,8 @@ export default {
   },
   components: {
     "game-board": GameBoard,
-    "game-over": GameOver
+    "game-over": GameOver,
+    "score-list": ScoreList
   },
 
   mounted () {
