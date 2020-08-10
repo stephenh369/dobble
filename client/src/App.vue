@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <game-board v-if="! gameOver"/>
-    <game-over v-if="gameOver" :score="finalScore"/>
+    <main-menu v-if="!gameStart && !gameOver" />
+    <game-board v-if="!gameOver && gameStart"/>
+    <game-over v-if="gameOver" :score="finalScore" />
   </div>
 </template>
 
 <script>
 import { eventBus } from "@/main.js";
+import MainMenu from './components/MainMenu';
 import GameBoard from './components/GameBoard';
 import GameOver from './components/GameOver';
 
@@ -14,10 +16,12 @@ export default {
   data () {
     return {
       finalScore: 0,
+      gameStart: false,
       gameOver: false
     }
   },
   components: {
+    "main-menu": MainMenu,
     "game-board": GameBoard,
     "game-over": GameOver
   },
@@ -32,6 +36,13 @@ export default {
     eventBus.$on("restart-game", () => {
       console.log("Restarting game...");
       this.gameOver = false;
+      this.gameStart = true;
+    });
+
+    eventBus.$on("start-game", () => {
+      console.log("starting game...");
+      this.gameOver = false;
+      this.gameStart = true;
     })
   }
 
@@ -51,5 +62,14 @@ export default {
     height: 100vh;
     z-index: 0;
     background-color: black;
+  }
+  .btn {
+    background-color: #E4E660;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .btn:hover {
+    background-color: #EBEC83;
   }
 </style>
