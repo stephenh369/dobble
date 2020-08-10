@@ -38,9 +38,9 @@ export default {
 
         eventBus.$on('symbol-selected', (cardSymbol) => { 
             this.selectedSymbols.push(cardSymbol);
-            if (this.checkWin() === true) {
+            if (this.checkWin) {
                 this.winRound();
-            } else if (this.twoSymbols() === true && this.symbolsSame() === false){
+            } else if (this.twoSymbols && !this.symbolsSame) {
                 this.incorrectGuess();
             }
         });
@@ -54,7 +54,17 @@ export default {
         })
 
     },
-
+    computed: {
+        twoSymbols() {
+            return this.selectedSymbols.length === 2;
+        },
+        symbolsSame() {
+            return this.selectedSymbols[0] === this.selectedSymbols[1];
+        },
+        checkWin() {
+            return this.twoSymbols && this.symbolsSame;
+        }
+    },
     methods: {
         dealPlayerCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
@@ -66,27 +76,6 @@ export default {
                 this.dealOpponentCard();
             } else {
                 this.dealtOpponentCard = card;
-            }
-        },
-        twoSymbols() {
-            if (this.selectedSymbols.length === 2) {
-                return true;
-            } else {
-            return false;
-            }
-        },
-        symbolsSame() {
-            if (this.selectedSymbols[0] === this.selectedSymbols[1]) {
-                return true;
-            } else {
-            return false;
-            }
-        },
-        checkWin() {
-            if (this.twoSymbols() === true && this.symbolsSame() === true) {
-                return true;
-            } else {
-            return false;
             }
         },
         incorrectGuess() {
