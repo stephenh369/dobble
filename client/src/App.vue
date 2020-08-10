@@ -4,6 +4,7 @@
     <game-board v-if="pageDisplay === 'game-board'"/>
     <game-over v-if="pageDisplay === 'game-over'" :score="finalScore" />
     <score-list v-if="pageDisplay === 'score-list'" />
+    <tutorial v-if="pageDisplay === 'tutorial'"/>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import MainMenu from './components/MainMenu';
 import GameBoard from './components/GameBoard';
 import GameOver from './components/GameOver';
 import ScoreList from './components/ScoreList';
+import Tutorial from './components/Tutorial';
 
 export default {
   data () {
@@ -25,7 +27,8 @@ export default {
     "main-menu": MainMenu,
     "game-board": GameBoard,
     "game-over": GameOver,
-    "score-list": ScoreList
+    "score-list": ScoreList,
+    "tutorial": Tutorial
   },
 
   mounted () {
@@ -47,6 +50,10 @@ export default {
 
     eventBus.$on("high-scores", () => {
       this.pageDisplay = "score-list";
+    });
+
+    eventBus.$on("tutorial", () => {
+      this.pageDisplay = "tutorial";
     });
   }
 
