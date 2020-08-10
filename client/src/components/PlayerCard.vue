@@ -1,7 +1,7 @@
 <template>
-  <div class="symbol-div" v-if="playerCard">
+  <div class="symbol-div" v-if="card">
     <card-symbol
-                 v-for="(oneSymbol, index) of playerCard.symbols" 
+                 v-for="(oneSymbol, index) of card.symbols" 
                  v-on:click.native="handleClick(oneSymbol)" 
                  :cardSymbol="oneSymbol" 
                  :key="index"
@@ -19,7 +19,7 @@
           selectedSymbol: null
         }
       },
-      props: ['playerCard'],
+      props: ['card'],
       components: {
         'card-symbol': CardSymbol
       },

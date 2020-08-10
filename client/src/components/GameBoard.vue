@@ -4,8 +4,8 @@
       <div id="score-display">Score: {{score}}</div>
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
-        <player-card :playerCard="dealtPlayerCard" class="card"/>
-        <opponent-card :opponentCard="dealtOpponentCard" class="card"/>
+        <card :card="dealtPlayerCard" class="card"/>
+        <card :card="dealtOpponentCard" class="card"/>
       </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 import CardService from '../services/CardService.js'
 import Timer from './Timer.vue'
 import PlayerCard from './PlayerCard.vue'
-import OpponentCard from './OpponentCard.vue'
+// import OpponentCard from './OpponentCard.vue'
 import { eventBus } from '@/main.js'
 
 export default {
@@ -93,8 +93,7 @@ export default {
     
     components: {
         "timer": Timer,
-        "player-card": PlayerCard,
-        "opponent-card": OpponentCard,
+        "card": PlayerCard
     }
 }    
 </script>
