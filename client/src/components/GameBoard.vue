@@ -13,8 +13,7 @@
 <script>
 import CardService from '../services/CardService.js'
 import Timer from './Timer.vue'
-import PlayerCard from './PlayerCard.vue'
-// import OpponentCard from './OpponentCard.vue'
+import Card from './Card.vue'
 import { eventBus } from '@/main.js'
 
 export default {
@@ -93,7 +92,7 @@ export default {
     
     components: {
         "timer": Timer,
-        "card": PlayerCard
+        "card": Card
     }
 }    
 </script>
