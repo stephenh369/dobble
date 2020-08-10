@@ -13,5 +13,11 @@ export default {
             headers: { 'Content-Type': application/json }
         })
         .then(res => res.json())
+    },
+
+    deleteScore(id) {
+        return fetch(baseURL + id, {
+            method: 'DELETE'
+        })
     }
 }

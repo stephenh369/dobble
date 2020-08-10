@@ -38,6 +38,14 @@ const createRouter = collection => {
       .deleteOne({ _id: ObjectID(id) })
       .then(result => res.json(result))
       .catch(err => errorHandler(res, err));
+  });
+
+  // DELETE ALL
+  router.delete('/', (req, res) => {
+    collection
+      .remove({})
+      .then(result => res.json(result))
+      .catch(err => errorHandler(res, err));
   })
 
   return router;
