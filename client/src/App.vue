@@ -75,6 +75,7 @@ export default {
   * {
     box-sizing: border-box;
     margin: 0;
+    font-family: 'Fredoka One', cursive;
   }
   body {
     background-color: rgb(141, 83, 141);
