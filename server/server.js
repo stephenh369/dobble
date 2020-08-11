@@ -15,10 +15,13 @@ MongoClient.connect("mongodb://localhost:27017")
     const db = client.db("dobble");
     const cardsCollection = db.collection("cards");
     const scoresCollection = db.collection("scores");
+    const symbolColleection = db.collection("symbols");
     const scoresRouter = createRouter(scoresCollection);
     const cardsRouter = createRouter(cardsCollection);
+    const symbolsRouter = createRouter(symbolColleection);
     app.use("/api/cards", cardsRouter);
     app.use("/api/scores", scoresRouter);
+    app.use("/api/symbols", symbolsRouter);
   })
   .catch(console.error);
 
