@@ -2,6 +2,7 @@
   <div id="game-board">
       <timer />
       <div id="score-display">Score: {{score}}</div>
+      <button class="btn" v-on:click="mainMenu">Main menu</button>
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
         <card :card="dealtLeftCard" class="card"/>
@@ -76,6 +77,10 @@ export default {
     },
 
     methods: {
+
+        mainMenu () {
+            eventBus.$emit("main-menu");  // to App
+        },
 
         // selects a random card object from the array of cards, then sets that value to dealtLeftCard
         dealLeftCard() {

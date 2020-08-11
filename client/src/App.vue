@@ -62,7 +62,7 @@ export default {
       this.pageDisplay = "tutorial";
     });
 
-    // from Tutorial and ScoreList
+    // from Tutorial, ScoreList, GameBoard
     eventBus.$on("main-menu", () => {
       this.pageDisplay = "main-menu";
     });
