@@ -61,6 +61,7 @@ export default {
             eventBus.$emit("game-over", this.score)
         });
 
+        // from ComputerOpponent: empties selectedSymbols array, deals new cards, sends eventBus back to ComputerOpponent
         eventBus.$on("computer-wins", () => {
             this.selectedSymbols = [];
             this.dealLeftCard();
@@ -118,7 +119,8 @@ export default {
         // increments score
         // then empties selectedSymbols array
         // then deals two new cards
-        // finally sends eventBus to Card (card then deselects symbol)
+        // sends eventBus to Card (card then deselects symbol)
+        // finally eventBus to ComputerOpponent (to reset the timeout)
         winRound() {
             this.score += 1;
             this.selectedSymbols = [];
