@@ -102,4 +102,7 @@ export default {
   .time-limit-span {
     color: rgb(180, 14, 14);
   }
+  .score-span {
+    color: #E4E660;
+  }
 </style>
