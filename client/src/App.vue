@@ -106,4 +106,14 @@ export default {
   .text-highlight {
     color: #E4E660;
   }
+
+  @media screen and (min-width: 1000px) {
+    * {
+      font-size: 20px;
+    }
+    .logo {
+      width: 150px;
+      height: 150px;
+    }
+  }
 </style>
