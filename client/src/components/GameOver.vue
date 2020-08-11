@@ -12,9 +12,9 @@
 
     <p v-if="scoreSubmitted">Thanks, {{name}}! Your score has been saved.</p>
       <div id="game-over-btn-div">
-        <button class="btn btn-game-over" v-on:click="restartGame">Restart?</button>
-        <button class="btn btn-game-over" v-on:click="mainMenu">Main menu</button>
-        <button class="btn btn-game-over" v-on:click="highScores">High scores</button>
+        <button class="btn" v-on:click="restartGame">Restart?</button>
+        <button class="btn" v-on:click="mainMenu">Main menu</button>
+        <button class="btn" v-on:click="highScores">High scores</button>
       </div>
     </div>
   </div>
@@ -84,14 +84,17 @@ export default {
     transform: translate(-50%, -45%);
   }
   #game-over-btn-div {
-    display: flex;
-    justify-content: start;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 50%;
     align-items: center;
-    width: 100%;
   }
   #name-input {
     background: transparent;
     border: none;
     border-bottom: 2px solid black;
+  }
+  #game-over-btn-div > button {
+    width: 100%;
   }
 </style>
