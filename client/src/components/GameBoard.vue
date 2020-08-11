@@ -8,6 +8,7 @@
         <card :card="dealtLeftCard" class="card"/>
         <card :card="dealtRightCard" class="card"/>
       </div>
+      <computer-opponent v-if="dealtLeftCard && dealtRightCard" :leftCard="dealtLeftCard" :rightCard="dealtRightCard" />
   </div>
 </template>
 
@@ -15,6 +16,7 @@
 import CardService from '../services/CardService.js'
 import Timer from './Timer.vue'
 import Card from './Card.vue'
+import ComputerOpponent from './ComputerOpponent.vue'
 import { eventBus } from '@/main.js'
 
 export default {
@@ -122,7 +124,8 @@ export default {
     
     components: {
         "timer": Timer,
-        "card": Card
+        "card": Card,
+        "computer-opponent": ComputerOpponent
     }
     
 }    
