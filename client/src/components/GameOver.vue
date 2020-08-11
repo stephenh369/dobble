@@ -10,7 +10,8 @@
     </form>
 
     <p v-if="scoreSubmitted">Thanks, {{name}}! Your score has been saved.</p>
-    <button v-on:click="restartGame">Restart?</button>
+    <button class="btn" v-on:click="restartGame">Restart?</button>
+    <button class="btn" v-on:click="mainMenu">Main menu</button>
   </div>
 </template>
 
@@ -35,6 +36,10 @@ export default {
   },
 
   methods: {
+
+    mainMenu () {
+      eventBus.$emit('main-menu');  //to App
+    },
 
     // to App
     restartGame () {
