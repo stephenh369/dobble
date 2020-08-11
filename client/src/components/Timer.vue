@@ -33,7 +33,6 @@ export default {
 
       eventBus.$on("main-menu", () => {
         clearInterval(timer);
-        console.log("quitting to main menu...");
       });
 
       }, 1000);  // interval is in ms (so 1000 ms = 1 s)
