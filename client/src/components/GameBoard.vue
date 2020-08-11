@@ -185,7 +185,7 @@ export default {
             width: 250px;
             height: 250px;
         }
-        #score-display {
+        #score-display, .score-span {
             font-size: 30px;
         }
         #timer, .time-limit-span {
