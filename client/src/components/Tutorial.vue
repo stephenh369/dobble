@@ -26,10 +26,11 @@
 
 <script>
 import { eventBus } from '@/main.js';
+
 export default {
   methods: {
     mainMenu () {
-      eventBus.$emit("main-menu");
+      eventBus.$emit("main-menu");  // to App
     }
   }
 }

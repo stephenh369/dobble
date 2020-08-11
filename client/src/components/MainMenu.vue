@@ -9,14 +9,21 @@
 
 <script>
 import { eventBus } from '@/main.js';
+
 export default {
   methods: {
+
+    // to App 
     startGame () {
       eventBus.$emit("start-game");
     },
+
+    // to App
     highScores () {
       eventBus.$emit("high-scores");
     },
+
+    // to App
     tutorial () {
       eventBus.$emit("tutorial");
     }

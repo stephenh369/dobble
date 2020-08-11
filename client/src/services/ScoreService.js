@@ -6,7 +6,7 @@ export default {
         .then(res => res.json())
     },
 
-    postScores(payload){
+    postScore(payload){
         return fetch(baseURL, {
             method: 'POST',
             body: JSON.stringify(payload),

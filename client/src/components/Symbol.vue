@@ -1,17 +1,20 @@
 <template>
     <div>
-      <!-- <button class="btn-card" v-on:click="handleClick">{{ cardSymbol }}</button> -->
         <img :src="getImgUrl(cardSymbol)" alt="symbol" />
     </div>
 </template>
+
 <script>
 import { eventBus } from '@/main.js';
 
 export default {
     name: 'CardSymbol',
+
     props: ['cardSymbol'],
+
     methods: {
-            getImgUrl(symbol) {
+        // returns path to symbol image based on standard path + name 
+        getImgUrl(symbol) {
             return require('../assets/'+symbol+'.png');
         }
     }

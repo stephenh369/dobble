@@ -19,6 +19,7 @@ import { eventBus } from "@/main.js";
 import ScoreService from "../services/ScoreService"
 
 export default {
+  
   data () {
     return {
       name: "",
@@ -34,18 +35,22 @@ export default {
   },
 
   methods: {
+
+    // to App
     restartGame () {
       eventBus.$emit("restart-game")
     },
 
+    // prevents page reloading on submit
+    // POSTs score and name to database
+    // then sets scoreSubmitted to true
     submitScore () {
       event.preventDefault()
 
-      ScoreService.postScores({
+      ScoreService.postScore({
         name: this.name,
         score: this.score
-      })
-        .then(() => this.scoreSubmitted = true);
+      }).then(() => this.scoreSubmitted = true);
     }
   }
 }

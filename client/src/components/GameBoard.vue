@@ -30,11 +30,14 @@ export default {
     },
 
     mounted() {
+        // retrieves cards from database, then deals two cards
         CardService.getCards()
             .then(cards => this.cards = cards)
             .then(() => this.dealLeftCard())
             .then(() => this.dealRightCard());
 
+        // from Card: pushes symbol into selectedSymbols array, then checks if guess is correct
+        // if guess is correct calls winRound, else if there are two selectedSymbols calls incorrectGuess 
         eventBus.$on('symbol-selected', (cardSymbol) => { 
             this.selectedSymbols.push(cardSymbol);
             if (this.checkWin) {
@@ -44,31 +47,45 @@ export default {
             }
         });
 
+        // from Card: changes selectedSymbols to an array containing the symbol that has been chosen
+        // will only be called if there is exactly one symbol in the array (symbol-selected in all other cases)
         eventBus.$on("symbol-changed", cardSymbol => {
             this.selectedSymbols = [cardSymbol]
         });
 
+        // from Timer: sends new game-over event bus (containing score) to App
         eventBus.$on("time-up", () => {
             eventBus.$emit("game-over", this.score)
         })
 
     },
+
     computed: {
+
         twoSymbols() {
             return this.selectedSymbols.length === 2;
         },
+
         symbolsSame() {
             return this.selectedSymbols[0] === this.selectedSymbols[1];
         },
+
         checkWin() {
             return this.twoSymbols && this.symbolsSame;
         }
     },
+
     methods: {
+
+        // selects a random card object from the array of cards, then sets that value to dealtLeftCard
         dealLeftCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
             this.dealtLeftCard = card;
         },
+
+        // selcts a random card object from the array of cards
+        // if the content of that object is the same as the content of dealtLeftCard, repeats the process
+        // else, sets dealtRightCard to the selected card
         dealRightCard() {
             const card = this.cards[Math.floor(Math.random() * this.cards.length)];
             if (JSON.stringify(card) === JSON.stringify(this.dealtLeftCard) ) {
@@ -77,10 +94,17 @@ export default {
                 this.dealtRightCard = card;
             }
         },
+
+        // empties selectedSymbols array then sends eventBus to Card (card then deselects symbol)
         incorrectGuess() {
             this.selectedSymbols = [];
             eventBus.$emit('guess-over');
         },
+
+        // increments score
+        // then empties selectedSymbols array
+        // then deals two new cards
+        // finally sends eventBus to Card (card then deselects symbol)
         winRound() {
             this.score += 1;
             this.selectedSymbols = [];
@@ -88,12 +112,14 @@ export default {
             this.dealRightCard();
             eventBus.$emit('guess-over');
         }
+
     },
     
     components: {
         "timer": Timer,
         "card": Card
     }
+    
 }    
 </script>
 

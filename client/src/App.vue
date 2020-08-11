@@ -23,6 +23,7 @@ export default {
       pageDisplay: "main-menu"
     }
   },
+
   components: {
     "main-menu": MainMenu,
     "game-board": GameBoard,
@@ -32,30 +33,36 @@ export default {
   },
 
   mounted () {
+    // from GameBoard when timer expires
     eventBus.$on("game-over", score => {
       console.log("Game over: time expired")
       this.finalScore = score;
       this.pageDisplay = "game-over";
     });
 
+    // from GameOver
     eventBus.$on("restart-game", () => {
       console.log("Restarting game...");
       this.pageDisplay = "game-board";
     });
 
+    // from MainMenu
     eventBus.$on("start-game", () => {
       console.log("starting game...");
       this.pageDisplay = "game-board";
     });
 
+    // from MainMenu
     eventBus.$on("high-scores", () => {
       this.pageDisplay = "score-list";
     });
 
+    // from MainMenu
     eventBus.$on("tutorial", () => {
       this.pageDisplay = "tutorial";
     });
 
+    // from Tutorial
     eventBus.$on("main-menu", () => {
       this.pageDisplay = "main-menu";
     });
