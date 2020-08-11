@@ -12,7 +12,7 @@
       </p>
       <p class="tutorial-p">
         In our version of the game, <strong>two</strong> cards will appear on screen that will feature <strong>six</strong> different symbols.
-        Any two cards have exactly one symbol in common. <span id="match-span">Match</span> the common symbols by clicking on the matching symbols.
+        Any two cards have exactly one symbol in common. <span id="match-span">Match</span> the common symbols by clicking on the matching symbol on each card.
       </p>
       <p class="tutorial-p">
         If you guess correct you will score <strong>one</strong> point, and the game will give you a new combination of cards.
