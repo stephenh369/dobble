@@ -99,4 +99,7 @@ export default {
   .btn:hover {
     background-color: #EBEC83;
   }
+  .text-highlight {
+    color: #E4E660;
+  }
 </style>

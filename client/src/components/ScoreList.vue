@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="score-list">
       <score v-for="(score, index) in scores" :score="score" :key="index" ></score>
       <button class="btn" v-on:click="mainMenu">Main menu</button>
   </div>
@@ -37,6 +37,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    #score-list {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(141, 83, 141);
+    }
 </style>
