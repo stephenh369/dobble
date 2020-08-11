@@ -2,8 +2,9 @@
   <div id="score-list-div">
       <div id="scores-list">
         <h2 id="scores-heading">High Scores</h2>
-        <score v-for="(score, index) in scores" :score="score" :key="index" ></score>
-        <button id="bk-from-scores-btn" class="btn" v-on:click="mainMenu">Main menu</button>
+        <score v-for="(score, index) in sortedScores" :score="score" :key="index" ></score>
+        <button class="btn" v-on:click="mainMenu">Main menu</button>
+        <button class="btn" v-on:click="resetScores">Reset Scores</button>
       </div>
   </div>
 </template>
@@ -25,9 +26,24 @@ export default {
     methods: {
         mainMenu () {
             eventBus.$emit("main-menu");  // to App
+        },
+
+        // to delete the score list
+         resetScores() {
+             ScoreService.resetScores();
+             this.scores = [];
         }
     },
     
+    computed: {
+        sortedScores() {
+            const sorted = this.scores.sort(function(a,b) {
+                return b.score - a.score; 
+            })
+            return sorted;
+        }
+
+    },
     mounted() {
         // retrieves scores from database, then sets scores array to retrieved data
         ScoreService.getScores()
@@ -50,7 +66,7 @@ export default {
         display: grid;
         grid-template-columns: 1fr;
     }
-    #scores-heading, #bk-from-scores-btn {
+    #scores-heading {
         margin: 15px auto;
     }
 </style>
