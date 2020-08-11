@@ -99,4 +99,7 @@ export default {
   .btn:hover {
     background-color: #EBEC83;
   }
+  .time-limit-span {
+    color: rgb(180, 14, 14);
+  }
 </style>
