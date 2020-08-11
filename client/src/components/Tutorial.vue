@@ -17,7 +17,7 @@
       <p class="tutorial-p">
         If you guess correct you will score <span id="number-span">one</span> point, and the game will give you a new combination of cards.
         If you are incorrect or misclick, just select a different pair of symbols!
-        You also have a <span class="time-limit-span">time limit</span>, so answer as quickly as possible for the best score!
+        You also have a <span id="time-limit-span-tutorial">time limit</span>, so answer as quickly as possible for the best score!
       </p>
       <button id="tutorial-bk-btn" class="btn" v-on:click="mainMenu">Got it!</button>
     </div>
@@ -75,5 +75,14 @@ export default {
   #number-span {
     color: #E4E660;
   }
-
+ #time-limit-span-tutorial {
+    color: rgb(180, 14, 14);
+  }
+  
+  @media screen and (min-width: 1000px){
+    #tutorial-logo {
+      width: 96px;
+      height: 96px;
+    }
+  }
 </style>

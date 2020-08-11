@@ -74,9 +74,16 @@ export default {
     }
     #score-list-btn-div {
         text-align: center;
+        margin: auto;
     }
     .btn-score-list {
-        min-width: 100px;
+        min-width: 125px;
         margin: 15px 10px;
+    }
+
+    @media screen and (min-width: 1000px) {
+         .btn-score-list {
+            min-width: 200px;
+        }
     }
 </style>

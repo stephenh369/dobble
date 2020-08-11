@@ -109,7 +109,13 @@ export default {
 
   @media screen and (min-width: 1000px) {
     * {
-      font-size: 20px;
+      font-size: 24px;
+    }
+    h1 {
+      font-size: 48px;
+    }
+    h2 {
+      font-size: 36px;
     }
     .logo {
       width: 150px;

@@ -91,7 +91,7 @@ export default {
   }
   #game-over-heading {
     text-align: center;
-    font-size: 28px;
+    font-size: 25px;
     margin-bottom: 35px;
   }
   #game-over-score {
@@ -114,5 +114,11 @@ export default {
   }
   #game-over-btn-div > button {
     width: 100%;
+  }
+
+  @media screen and (min-width: 1000px){
+    #game-over-heading > h1{
+      font-size: 50px;
+    }
   }
 </style>

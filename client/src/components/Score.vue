@@ -27,4 +27,9 @@ export default {
     color: black;
 }
 
+@media screen and (min-width: 1000px) {
+    .score-item, .text-highlight {
+        font-size: 32px;
+    }
+}
 </style>
