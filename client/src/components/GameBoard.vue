@@ -16,6 +16,7 @@ import CardService from '../services/CardService.js'
 import Timer from './Timer.vue'
 import Card from './Card.vue'
 import { eventBus } from '@/main.js'
+import { shuffle } from "../helpers/ShuffleArray";
 
 export default {
     name: 'game-board',
@@ -31,9 +32,18 @@ export default {
     },
 
     mounted() {
-        // retrieves cards from database, then deals two cards
+        // retrieves cards from database, 
+        // shuffles cards' symbols, 
+        // then deals two cards
         CardService.getCards()
             .then(cards => this.cards = cards)
+            .then(() => {
+                console.log('this.cards (before shuffle) :>> ', this.cards);
+                this.cards.forEach(card => {
+                    shuffle(card.symbols)
+                })
+                console.log('this.cards (after shuffl) :>> ', this.cards);
+            })
             .then(() => this.dealLeftCard())
             .then(() => this.dealRightCard());
 
