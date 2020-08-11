@@ -12,6 +12,7 @@
     <p v-if="scoreSubmitted">Thanks, {{name}}! Your score has been saved.</p>
     <button class="btn" v-on:click="restartGame">Restart?</button>
     <button class="btn" v-on:click="mainMenu">Main menu</button>
+    <button class="btn" v-on:click="highScores">High scores</button>
   </div>
 </template>
 
@@ -36,6 +37,9 @@ export default {
   },
 
   methods: {
+    highScores () {
+      eventBus.$emit('high-scores');
+    },
 
     mainMenu () {
       eventBus.$emit('main-menu');  //to App

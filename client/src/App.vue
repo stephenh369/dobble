@@ -52,7 +52,7 @@ export default {
       this.pageDisplay = "game-board";
     });
 
-    // from MainMenu
+    // from MainMenu, GameOver
     eventBus.$on("high-scores", () => {
       this.pageDisplay = "score-list";
     });
@@ -62,7 +62,7 @@ export default {
       this.pageDisplay = "tutorial";
     });
 
-    // from Tutorial, ScoreList, GameBoard
+    // from Tutorial, ScoreList, GameBoard, GameOver
     eventBus.$on("main-menu", () => {
       this.pageDisplay = "main-menu";
     });
