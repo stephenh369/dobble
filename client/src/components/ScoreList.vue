@@ -3,8 +3,10 @@
       <div id="scores-list">
         <h2 id="scores-heading">High Scores</h2>
         <score v-for="(score, index) in sortedScores" :score="score" :key="index" ></score>
-        <button class="btn" v-on:click="mainMenu">Main menu</button>
-        <button class="btn" v-on:click="resetScores">Reset Scores</button>
+        <div id="score-list-btn-div">
+            <button class="btn btn-score-list" v-on:click="mainMenu">Main menu</button>
+            <button class="btn btn-score-list" v-on:click="resetScores">Reset Scores</button>
+        </div>
       </div>
   </div>
 </template>
@@ -68,5 +70,12 @@ export default {
     }
     #scores-heading {
         margin: 15px auto;
+    }
+    #score-list-btn-div {
+        text-align: center;
+    }
+    .btn-score-list {
+        min-width: 100px;
+        margin: 15px 10px;
     }
 </style>
