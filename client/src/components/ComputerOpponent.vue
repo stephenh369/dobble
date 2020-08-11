@@ -21,7 +21,15 @@ export default {
         this.createRandomTimeOut();
 
         // calls the computerWins function at a time specified by timeOut (defined in createRandomTimeOut)
-        setTimeout(this.computerWins, this.timeOut);
+        let activeTimeout = setTimeout(this.computerWins, this.timeOut);
+
+        eventBus.$on("new-round", () => {
+            this.matchingSymbol = null;
+            clearTimeout(activeTimeout);
+            this.createRandomTimeOut();
+            activeTimeout = setTimeout(this.computerWins, this.timeOut);
+        });
+
     },
 
     methods: {
@@ -38,10 +46,9 @@ export default {
             this.timeOut = randomTimeOut;
         },
 
-        // calls the findMatchingSymbol function, then sends eventBus to GameBoard with matchingSymbol 
         computerWins() {
             this.findMatchingSymbol();
-            eventBus.$emit("computer-wins", this.matchingSymbol);
+            eventBus.$emit("computer-wins");
         }
     }
 }

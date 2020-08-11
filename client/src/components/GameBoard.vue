@@ -59,6 +59,13 @@ export default {
         // from Timer: sends new game-over event bus (containing score) to App
         eventBus.$on("time-up", () => {
             eventBus.$emit("game-over", this.score)
+        });
+
+        eventBus.$on("computer-wins", () => {
+            this.selectedSymbols = [];
+            this.dealLeftCard();
+            this.dealRightCard();
+            eventBus.$emit("new-round");
         })
 
     },
@@ -118,6 +125,7 @@ export default {
             this.dealLeftCard();
             this.dealRightCard();
             eventBus.$emit('guess-over');
+            eventBus.$emit("new-round");
         }
 
     },
