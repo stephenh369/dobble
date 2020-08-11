@@ -101,7 +101,6 @@ export default {
     #game-board {
         width: 85vw;
         height: 75vh;
-        z-index: 1;
         background: url('../assets/wood-pattern.png') #996100;
         background-position: center;
         background-size: auto;
@@ -125,7 +124,6 @@ export default {
         display: inline-block;
         width: 150px;
         height: 150px;
-        z-index: 2;
         background-color: #f4f4f4;
         border-radius: 50%;
         border: 1px solid rgba(124, 1, 124, 0.6);
