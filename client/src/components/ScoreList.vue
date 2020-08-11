@@ -67,6 +67,7 @@ export default {
     #scores-list {
         display: grid;
         grid-template-columns: 1fr;
+        margin-top: 15vh;
     }
     #scores-heading {
         margin: 15px auto;

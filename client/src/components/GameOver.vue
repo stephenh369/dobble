@@ -7,7 +7,7 @@
       </div>
     
       <div id="game-over-score">
-        <p>You scored: {{score}}</p>
+        <p>You scored: <span class="score-span">{{score}}</span></p>
       </div>
 
     <form v-on:submit="submitScore" v-if="!scoreSubmitted">
