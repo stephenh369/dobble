@@ -40,9 +40,9 @@ export default {
     highScores () {
       eventBus.$emit('high-scores');
     },
-
+    //to App
     mainMenu () {
-      eventBus.$emit('main-menu');  //to App
+      eventBus.$emit('main-menu');  
     },
 
     // to App
