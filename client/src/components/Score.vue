@@ -19,6 +19,7 @@ export default {
 .score-item {
     display: flex;
     width: 50%;
+    max-width: 562px;
     margin: 0 auto;
     justify-content: space-evenly;
     align-items: center;

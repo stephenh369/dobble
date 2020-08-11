@@ -1,7 +1,10 @@
 <template>
-  <div id="score-list">
-      <score v-for="(score, index) in scores" :score="score" :key="index" ></score>
-      <button class="btn" v-on:click="mainMenu">Main menu</button>
+  <div id="score-list-div">
+      <div id="scores-list">
+        <h2 id="scores-heading">High Scores</h2>
+        <score v-for="(score, index) in scores" :score="score" :key="index" ></score>
+        <button id="bk-from-scores-btn" class="btn" v-on:click="mainMenu">Main menu</button>
+      </div>
   </div>
 </template>
 
@@ -38,9 +41,16 @@ export default {
 </script>
 
 <style scoped>
-    #score-list {
+    #score-list-div {
         width: 100vw;
         height: 100vh;
         background-color: rgb(141, 83, 141);
+    }
+    #scores-list {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #scores-heading, #bk-from-scores-btn {
+        margin: 15px auto;
     }
 </style>
