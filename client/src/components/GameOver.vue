@@ -1,9 +1,15 @@
 <template>
   <div id="game-over">
+
     <div id="game-over-container">
-    <h1>Game Over</h1>
-    <p>You scored: {{score}}</p>
+      <div id="game-over-heading">
+        <h1>Game Over</h1>
+      </div>
     
+      <div id="game-over-score">
+        <p>You scored: {{score}}</p>
+      </div>
+
     <form v-on:submit="submitScore" v-if="!scoreSubmitted">
       <label for="name-input">Enter your name to submit your high score</label>
       <input type="text" id="name-input" placeholder="Enter name here..." v-model="name" required>
@@ -83,13 +89,24 @@ export default {
     left: 50%;
     transform: translate(-50%, -45%);
   }
+  #game-over-heading {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 35px;
+  }
+  #game-over-score {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
   #game-over-btn-div {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     width: 50%;
     align-items: center;
   }
   #name-input {
+    margin: 0 20px;
     background: transparent;
     border: none;
     border-bottom: 2px solid black;
