@@ -1,8 +1,10 @@
 <template>
   <div id="game-board">
-      <timer />
-      <div id="score-display">Score: {{score}}</div>
-      <button class="btn" v-on:click="mainMenu">Main menu</button>
+      <div id="ui-components">
+        <timer />
+        <div id="score-display">Score: <span class="score-span">{{score}}</span></div>
+        <button id="btn-game-board" class="btn" v-on:click="mainMenu">Main menu</button>
+      </div>
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
         <card :card="dealtLeftCard" class="card"/>
@@ -130,8 +132,8 @@ export default {
 
 <style>
     #game-board {
-        width: 85vw;
-        height: 75vh;
+        width: 90vw;
+        height: 85vh;
         background: url('../assets/wood-pattern.png') #996100;
         background-position: center;
         background-size: auto;
@@ -139,9 +141,9 @@ export default {
     }
     .logo {
         position: absolute;
-        top: 18%;
+        top: 22%;
         left: 50%;
-        transform: translate(-50%, -18%);
+        transform: translate(-50%, -22%);
         width: 80px;
         height: 80px;
     }
@@ -165,13 +167,17 @@ export default {
         background-color: white;
         transition: 0.3s;
     }
-    .btn-card {
-        border-radius: 10px;
-        border: 1px solid rgba(117, 1, 117, 0.692);
-        cursor: pointer;
+    #ui-components {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        align-items: center;
+        margin: 0 auto;
     }
-    .btn-card:hover,
-    .btn-card:focus {
-        background-color: rgba(124, 1, 124, 0.2);
+    #btn-game-board {
+        width: 12.5vw;
+        max-width: 420px;
+
     }
+    
 </style>

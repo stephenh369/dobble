@@ -99,4 +99,11 @@ export default {
   .btn:hover {
     background-color: #EBEC83;
   }
+  .time-limit-span {
+    color: rgb(180, 14, 14);
+  }
+  .score-span,
+  .text-highlight {
+    color: #E4E660;
+  }
 </style>
