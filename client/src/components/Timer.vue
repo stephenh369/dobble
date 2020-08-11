@@ -31,6 +31,7 @@ export default {
           eventBus.$emit("time-up")  // to GameBoard
         }
 
+      // when main-menu event is received (from GameBoard), stop timer
       eventBus.$on("main-menu", () => {
         clearInterval(timer);
       });
