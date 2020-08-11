@@ -38,11 +38,9 @@ export default {
         CardService.getCards()
             .then(cards => this.cards = cards)
             .then(() => {
-                console.log('this.cards (before shuffle) :>> ', this.cards);
                 this.cards.forEach(card => {
                     shuffle(card.symbols)
                 })
-                console.log('this.cards (after shuffl) :>> ', this.cards);
             })
             .then(() => this.dealLeftCard())
             .then(() => this.dealRightCard());
