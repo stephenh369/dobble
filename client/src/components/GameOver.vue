@@ -102,6 +102,7 @@ export default {
   #game-over-btn-div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
     width: 50%;
     align-items: center;
   }
