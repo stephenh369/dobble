@@ -17,11 +17,12 @@ export default {
 
 <style scoped>
 .score-item {
-    display: flex;
+    display: grid;
     width: 50%;
     max-width: 562px;
     margin: 0 auto;
-    justify-content: space-evenly;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
     align-items: center;
     color: black;
 }
