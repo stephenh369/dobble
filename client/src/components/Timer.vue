@@ -11,7 +11,7 @@ export default {
   data () {
     return {
       // TODO change time limit to 60 before going to production
-      timeLimit: 50000,  // round time limit in seconds
+      timeLimit: 5,  // round time limit in seconds
       timeRemaining: null  // time remaining on this round
     };
   },
