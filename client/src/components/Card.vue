@@ -35,6 +35,9 @@
 
         // clean selected symbol when game ends
         eventBus.$on("game-over", () => this.selectedSymbol = null);
+
+        // clean selected symbol when game ends
+        eventBus.$on("main-menu", () => this.selectedSymbol = null);
       },
 
       methods: {
