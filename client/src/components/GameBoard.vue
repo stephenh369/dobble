@@ -37,11 +37,11 @@ export default {
         // then deals two cards
         CardService.getCards()
             .then(cards => this.cards = cards)
-            .then(() => {
-                this.cards.forEach(card => {
-                    shuffle(card.symbols)
-                })
-            })
+            // .then(() => {
+            //     this.cards.forEach(card => {
+            //         shuffle(card.symbols)
+            //     })
+            // })
             .then(() => this.dealLeftCard())
             .then(() => this.dealRightCard());
 
