@@ -10,8 +10,7 @@ import { eventBus } from "@/main.js";
 export default {
   data () {
     return {
-      // TODO change time limit to 60 before going to production
-      timeLimit: 600,  // round time limit in seconds
+      timeLimit: 60,  // round time limit in seconds
       timeRemaining: null  // time remaining on this round
     };
   },
