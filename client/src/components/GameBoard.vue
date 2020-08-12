@@ -90,6 +90,7 @@ export default {
 
     beforeDestroy () {
         eventBus.$off('symbol-selected');
+        eventBus.$off('computer-wins');
     },
 
     computed: {
