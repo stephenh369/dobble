@@ -43,7 +43,7 @@ export default {
         // if guess is correct calls winRound, else if there are two selectedSymbols calls incorrectGuess 
         eventBus.$on('symbol-selected', (cardSymbol) => { 
             this.selectedSymbols.push(cardSymbol);
-            if (this.checkWin) {
+            if (this.checkWin()) {
                 this.winRound();
             } else if (this.twoSymbols && !this.symbolsSame) {
                 this.incorrectGuess();
@@ -61,6 +61,25 @@ export default {
             eventBus.$emit("game-over", this.score)
         })
 
+        // clean values when game ends
+        eventBus.$on("game-over", () => {
+            this.cards = [];
+            this.dealtLeftCard = null;
+            this.dealtRightCard = null;
+            this.selectedSymbols = [];
+        });
+
+        eventBus.$on("main-menu", () => {
+            this.cards = [];
+            this.dealtLeftCard = null;
+            this.dealtRightCard = null;
+            this.selectedSymbols = [];
+        });
+
+    },
+
+    beforeDestroy () {
+        eventBus.$off('symbol-selected');
     },
 
     computed: {
@@ -70,15 +89,17 @@ export default {
         },
 
         symbolsSame() {
-            return this.selectedSymbols[0] === this.selectedSymbols[1];
-        },
-
-        checkWin() {
-            return this.twoSymbols && this.symbolsSame;
+            return this.twoSymbols && this.selectedSymbols[0] === this.selectedSymbols[1];
         }
+
     },
 
     methods: {
+
+        // TODO REEMOVE
+        checkWin() {
+            return this.twoSymbols && this.symbolsSame;
+        },
 
         mainMenu () {
             eventBus.$emit("main-menu");  // to App
@@ -113,11 +134,11 @@ export default {
         // then deals two new cards
         // finally sends eventBus to Card (card then deselects symbol)
         winRound() {
+            eventBus.$emit('guess-over');
             this.score += 1;
             this.selectedSymbols = [];
             this.dealLeftCard();
             this.dealRightCard();
-            eventBus.$emit('guess-over');
         }
 
     },

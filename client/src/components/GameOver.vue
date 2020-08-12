@@ -57,7 +57,7 @@ export default {
 
     // to App
     restartGame () {
-      eventBus.$emit("restart-game")
+      eventBus.$emit("start-game")
     },
 
     // prevents page reloading on submit
