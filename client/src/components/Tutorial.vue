@@ -11,13 +11,13 @@
         an image shown on two cards.
       </p>
       <p class="tutorial-p">
-        In our version of the game, <strong>two</strong> cards will appear on screen that will feature <strong>six</strong> different symbols.
+        In our version of the game, <span id="number-span">two</span> cards will appear on screen that will feature <span id="number-span">six</span> different symbols.
         Any two cards have exactly one symbol in common. <span id="match-span">Match</span> the common symbols by clicking on the matching symbol on each card.
       </p>
       <p class="tutorial-p">
-        If you guess correct you will score <strong>one</strong> point, and the game will give you a new combination of cards.
+        If you guess correct you will score <span id="number-span">one</span> point, and the game will give you a new combination of cards.
         If you are incorrect or misclick, just select a different pair of symbols!
-        You also have a <span id="time-limit-span">time limit</span>, so answer as quickly as possible for the best score!
+        You also have a <span id="time-limit-span-tutorial">time limit</span>, so answer as quickly as possible for the best score!
       </p>
       <button id="tutorial-bk-btn" class="btn" v-on:click="mainMenu">Got it!</button>
     </div>
@@ -72,8 +72,17 @@ export default {
   #match-span {
     color: rgb(110, 2, 110);
   }
-  #time-limit-span {
+  #number-span {
+    color: #E4E660;
+  }
+ #time-limit-span-tutorial {
     color: rgb(180, 14, 14);
   }
-
+  
+  @media screen and (min-width: 1000px){
+    #tutorial-logo {
+      width: 96px;
+      height: 96px;
+    }
+  }
 </style>

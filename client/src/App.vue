@@ -40,12 +40,6 @@ export default {
       this.pageDisplay = "game-over";
     });
 
-    // from GameOver
-    eventBus.$on("restart-game", () => {
-      console.log("Restarting game...");
-      this.pageDisplay = "game-board";
-    });
-
     // from MainMenu
     eventBus.$on("start-game", () => {
       console.log("starting game...");
@@ -98,5 +92,28 @@ export default {
   }
   .btn:hover {
     background-color: #EBEC83;
+  }
+  .time-limit-span {
+    color: rgb(180, 14, 14);
+  }
+  .score-span,
+  .text-highlight {
+    color: #E4E660;
+  }
+
+  @media screen and (min-width: 1000px) {
+    * {
+      font-size: 24px;
+    }
+    h1 {
+      font-size: 48px;
+    }
+    h2 {
+      font-size: 36px;
+    }
+    .logo {
+      width: 150px;
+      height: 150px;
+    }
   }
 </style>

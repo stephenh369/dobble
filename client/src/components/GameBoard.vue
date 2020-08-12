@@ -1,8 +1,10 @@
 <template>
   <div id="game-board">
-      <timer />
-      <div id="score-display">Score: {{score}}</div>
-      <button class="btn" v-on:click="mainMenu">Main menu</button>
+      <div id="ui-components">
+        <timer />
+        <div id="score-display">Score: <span class="score-span">{{score}}</span></div>
+        <button id="btn-game-board" class="btn" v-on:click="mainMenu">Main menu</button>
+      </div>
       <img class="logo" src="../assets/dobble.png" alt="dobble-logo"/>
       <div class="card-div">
         <card :card="dealtLeftCard" class="card"/>
@@ -49,7 +51,7 @@ export default {
         // if guess is correct calls winRound, else if there are two selectedSymbols calls incorrectGuess 
         eventBus.$on('symbol-selected', (cardSymbol) => { 
             this.selectedSymbols.push(cardSymbol);
-            if (this.checkWin) {
+            if (this.checkWin()) {
                 this.winRound();
             } else if (this.twoSymbols && !this.symbolsSame) {
                 this.incorrectGuess();
@@ -67,6 +69,25 @@ export default {
             eventBus.$emit("game-over", this.score)
         })
 
+        // clean values when game ends
+        eventBus.$on("game-over", () => {
+            this.cards = [];
+            this.dealtLeftCard = null;
+            this.dealtRightCard = null;
+            this.selectedSymbols = [];
+        });
+
+        eventBus.$on("main-menu", () => {
+            this.cards = [];
+            this.dealtLeftCard = null;
+            this.dealtRightCard = null;
+            this.selectedSymbols = [];
+        });
+
+    },
+
+    beforeDestroy () {
+        eventBus.$off('symbol-selected');
     },
 
     computed: {
@@ -76,15 +97,17 @@ export default {
         },
 
         symbolsSame() {
-            return this.selectedSymbols[0] === this.selectedSymbols[1];
-        },
-
-        checkWin() {
-            return this.twoSymbols && this.symbolsSame;
+            return this.twoSymbols && this.selectedSymbols[0] === this.selectedSymbols[1];
         }
+
     },
 
     methods: {
+
+        // TODO REEMOVE
+        checkWin() {
+            return this.twoSymbols && this.symbolsSame;
+        },
 
         mainMenu () {
             eventBus.$emit("main-menu");  // to App
@@ -119,11 +142,11 @@ export default {
         // then deals two new cards
         // finally sends eventBus to Card (card then deselects symbol)
         winRound() {
+            eventBus.$emit('guess-over');
             this.score += 1;
             this.selectedSymbols = [];
             this.dealLeftCard();
             this.dealRightCard();
-            eventBus.$emit('guess-over');
         }
 
     },
@@ -138,8 +161,8 @@ export default {
 
 <style>
     #game-board {
-        width: 85vw;
-        height: 75vh;
+        width: 90vw;
+        height: 85vh;
         background: url('../assets/wood-pattern.png') #996100;
         background-position: center;
         background-size: auto;
@@ -147,9 +170,9 @@ export default {
     }
     .logo {
         position: absolute;
-        top: 18%;
+        top: 22%;
         left: 50%;
-        transform: translate(-50%, -18%);
+        transform: translate(-50%, -22%);
         width: 80px;
         height: 80px;
     }
@@ -173,13 +196,29 @@ export default {
         background-color: white;
         transition: 0.3s;
     }
-    .btn-card {
-        border-radius: 10px;
-        border: 1px solid rgba(117, 1, 117, 0.692);
-        cursor: pointer;
+    #ui-components {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        align-items: center;
+        margin: 0 auto;
     }
-    .btn-card:hover,
-    .btn-card:focus {
-        background-color: rgba(124, 1, 124, 0.2);
+    #btn-game-board {
+        width: 12.5vw;
+        max-width: 420px;
+
+    }
+    
+    @media screen and (min-width: 1000px) {
+        .card {
+            width: 250px;
+            height: 250px;
+        }
+        #score-display, .score-span {
+            font-size: 30px;
+        }
+        #timer, .time-limit-span {
+            font-size: 30px;
+        }
     }
 </style>
