@@ -65,6 +65,7 @@ export default {
 
         // from ComputerOpponent: empties selectedSymbols array, deals new cards, sends eventBus back to ComputerOpponent
         eventBus.$on("computer-wins", () => {
+            eventBus.$emit('guess-over');
             this.selectedSymbols = [];
             this.dealLeftCard();
             this.dealRightCard();
