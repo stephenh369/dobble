@@ -214,4 +214,16 @@ export default {
 
     }
     
+    @media screen and (min-width: 1000px) {
+        .card {
+            width: 250px;
+            height: 250px;
+        }
+        #score-display, .score-span {
+            font-size: 30px;
+        }
+        #timer, .time-limit-span {
+            font-size: 30px;
+        }
+    }
 </style>

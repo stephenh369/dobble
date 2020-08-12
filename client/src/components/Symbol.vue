@@ -24,8 +24,8 @@ export default {
 
 <style scoped>
     img {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         border-radius: 5px;
     }
     img:hover {
@@ -33,5 +33,12 @@ export default {
     }
     img:active {
         background-color: rgba(117, 1, 117, 0.692);
+    }
+
+    @media screen and (min-width: 1000px) {
+      img {
+          width: 40px;
+          height: 40px;
+      }
     }
 </style>
