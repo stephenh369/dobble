@@ -1,6 +1,6 @@
 <template>
   <div id="timer">
-    Time left: {{this.timeRemaining}}
+    Time left: <span class="time-limit-span">{{this.timeRemaining}}</span>
   </div>
 </template>
 
@@ -54,6 +54,6 @@ export default {
 <style>
   #timer {
     font-size: 24;
-    color:white;
+    color: white;
   }
 </style>
