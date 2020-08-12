@@ -31,7 +31,10 @@
 
       mounted() {
         // from GameBoard (required to make symbols deselect after a guess)
-        eventBus.$on('guess-over', () => this.selectedSymbol = null);
+        eventBus.$on('guess-over', () => {
+          console.log('guess-over in Card')
+          this.selectedSymbol = null
+        });
 
         // clean selected symbol when game ends
         eventBus.$on("game-over", () => this.selectedSymbol = null);
@@ -44,6 +47,8 @@
         handleClick(clickedSymbol) {
           // if no symbol has been selected, sets selectedSymbol to the clicked symbol,
           // then sends that symbol on event bus to GameBoard as "symbol-selected"
+          console.log('handleClick selectedSymbol', this.selectedSymbol)
+          console.log('handleClick clickedSymbol', clickedSymbol)
           if (this.selectedSymbol === null) {
             this.selectedSymbol = clickedSymbol;
             eventBus.$emit('symbol-selected', this.selectedSymbol);
