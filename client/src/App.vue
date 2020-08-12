@@ -40,12 +40,6 @@ export default {
       this.pageDisplay = "game-over";
     });
 
-    // from GameOver
-    eventBus.$on("restart-game", () => {
-      console.log("Restarting game...");
-      this.pageDisplay = "game-board";
-    });
-
     // from MainMenu
     eventBus.$on("start-game", () => {
       console.log("starting game...");

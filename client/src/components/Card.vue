@@ -31,7 +31,15 @@
 
       mounted() {
         // from GameBoard (required to make symbols deselect after a guess)
-        eventBus.$on('guess-over', () => this.selectedSymbol = null);
+        eventBus.$on('guess-over', () => {
+          this.selectedSymbol = null
+        });
+
+        // clean selected symbol when game ends
+        eventBus.$on("game-over", () => this.selectedSymbol = null);
+
+        // clean selected symbol when game ends
+        eventBus.$on("main-menu", () => this.selectedSymbol = null);
       },
 
       methods: {
