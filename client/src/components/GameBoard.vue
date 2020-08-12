@@ -61,6 +61,23 @@ export default {
             eventBus.$emit("game-over", this.score)
         })
 
+        // clean values when game ends
+        eventBus.$on("game-over", () => {
+            this.cards = [];
+            this.dealtLeftCard = null;
+            this.dealtRightCard = null;
+            this.selectedSymbols = [];
+            this.score = 0;
+        });
+
+        eventBus.$on("main-menu", () => {
+            this.cards = [];
+            this.dealtLeftCard = null;
+            this.dealtRightCard = null;
+            this.selectedSymbols = [];
+            this.score = 0;
+        });
+
     },
 
     computed: {
