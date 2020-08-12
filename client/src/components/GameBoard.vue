@@ -39,13 +39,12 @@ export default {
         // then deals two cards
         CardService.getCards()
             .then(cards => this.cards = cards)
-            // .then(() => {
-            //     this.cards.forEach(card => {
-            //         shuffle(card.symbols)
-            //     })
-            // })
             .then(() => this.dealLeftCard())
-            .then(() => this.dealRightCard());
+            .then(() => this.dealRightCard())
+            .then(() => {
+                shuffle(this.dealtLeftCard.symbols);
+                shuffle(this.dealtRightCard.symbols);
+            });
 
         // from Card: pushes symbol into selectedSymbols array, then checks if guess is correct
         // if guess is correct calls winRound, else if there are two selectedSymbols calls incorrectGuess 
@@ -147,6 +146,8 @@ export default {
             this.selectedSymbols = [];
             this.dealLeftCard();
             this.dealRightCard();
+            shuffle(this.dealtLeftCard.symbols);
+            shuffle(this.dealtRightCard.symbols);
         }
 
     },
