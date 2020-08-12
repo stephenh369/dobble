@@ -44,12 +44,8 @@ export default {
         eventBus.$on('symbol-selected', (cardSymbol) => { 
             this.selectedSymbols.push(cardSymbol);
             if (this.checkWin()) {
-                console.log('on symbol-selected winRound')
-                console.log('this.selectedSymbols :>> ', this.selectedSymbols);
                 this.winRound();
             } else if (this.twoSymbols && !this.symbolsSame) {
-                console.log('on symbol-selected incorrectGuess')
-                console.log('this.selectedSymbols :>> ', this.selectedSymbols);
                 this.incorrectGuess();
             }
         });
@@ -102,7 +98,6 @@ export default {
 
         // TODO REEMOVE
         checkWin() {
-            console.log('checkWin', this.selectedSymbols, this.twoSymbols, this.symbolsSame)
             return this.twoSymbols && this.symbolsSame;
         },
 
@@ -131,7 +126,6 @@ export default {
         // empties selectedSymbols array then sends eventBus to Card (card then deselects symbol)
         incorrectGuess() {
             this.selectedSymbols = [];
-            console.log('emit guess-over from incorrectGuess')
             eventBus.$emit('guess-over');
         },
 
@@ -140,7 +134,6 @@ export default {
         // then deals two new cards
         // finally sends eventBus to Card (card then deselects symbol)
         winRound() {
-            console.log('emit guess-over from winRound')
             eventBus.$emit('guess-over');
             this.score += 1;
             this.selectedSymbols = [];
