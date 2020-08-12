@@ -10,7 +10,7 @@
         <card :card="dealtLeftCard" class="card"/>
         <card :card="dealtRightCard" class="card"/>
       </div>
-      <computer-opponent v-if="dealtLeftCard && dealtRightCard" :leftCard="dealtLeftCard" :rightCard="dealtRightCard" />
+      <computer-opponent v-if="opponent" :leftCard="dealtLeftCard" :rightCard="dealtRightCard" />
   </div>
 </template>
 
@@ -30,7 +30,8 @@ export default {
             dealtLeftCard: null,
             dealtRightCard: null,
             selectedSymbols: [],
-            score: 0
+            score: 0,
+            opponent: false
         }
     },
 
@@ -61,6 +62,11 @@ export default {
         // from Timer: sends new game-over event bus (containing score) to App
         eventBus.$on("time-up", () => {
             eventBus.$emit("game-over", this.score)
+        });
+
+        eventBus.$on('enable-computer-opponent', () => {
+            console.log('enable computer opponent event received')
+            this.opponent = true;
         });
 
         // from ComputerOpponent: empties selectedSymbols array, deals new cards, sends eventBus back to ComputerOpponent

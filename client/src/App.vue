@@ -46,6 +46,11 @@ export default {
       this.pageDisplay = "game-board";
     });
 
+    eventBus.$on("start-game-computer", () => {
+      this.pageDisplay = "game-board";
+      eventBus.$emit("enable-computer-opponent");
+    })
+
     // from MainMenu, GameOver
     eventBus.$on("high-scores", () => {
       this.pageDisplay = "score-list";
