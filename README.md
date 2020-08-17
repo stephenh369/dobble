@@ -6,7 +6,7 @@ It is a simple pattern recognition game where the players try to find matching s
 For this project, the aim was to make a browser adaption of the game as part of a small team. This is the result. 
 We undertook this project with a deadline of 1 week to use for our JavaScript group projects for our studies at CodeClan.
 
-Credit also goes to @T-Nawrocki, @helenakolberg & @rud-y
+Credit also goes to @T-Nawrocki (https://github.com/T-Nawrocki), @helenakolberg (https://github.com/helenakolberg) & @rud-y (https://github.com/rud-y).
 
 ### Technologies
 #### Front-end
